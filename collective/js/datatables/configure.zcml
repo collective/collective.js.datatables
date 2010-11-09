@@ -1,0 +1,42 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser" 
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="collective.js.datatables">
+
+  <five:registerPackage package="." />
+
+  <genericsetup:registerProfile 
+      name="default" 
+      title="jQuery DataTables" 
+      directory="profiles/default" 
+      description="jQuery DataTables for Plone 4"
+      provides="Products.GenericSetup.interfaces.EXTENSION" 
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot" />
+
+  <browser:resource
+      name="jquery.datatables.js"
+      file="resources/media/js/jquery.dataTables.js" />
+
+  <browser:resource
+      name="jquery.datatables-1.7.4.js"
+      file="resources/media/js/jquery.dataTables.js" />
+
+  <browser:resource
+      name="jquery.datatables-1.7.4.min.js"
+      file="resources/media/js/jquery.dataTables.min.js" />
+
+  <browser:resourceDirectory
+      name="jquery.datatables"
+      directory="resources" />
+
+  <browser:page
+    name="example.datatables"
+    for="*"
+    class=".example.Example"
+    template="example.pt"
+    permission="zope2.View"
+    />
+
+</configure>

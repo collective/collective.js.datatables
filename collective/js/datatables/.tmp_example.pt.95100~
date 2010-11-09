@@ -1,0 +1,117 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+  <div metal:fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+
+      <div tal:replace="structure provider:plone.abovecontenttitle" />
+<script type="text/javascript" src="++resource++jquery-ui-example.js"></script>
+<div class="clearfix" id="compGroupA">
+                    
+            <!-- Accordion -->
+            <h2 class="demoHeaders">Accordion</h2>
+            <div id="accordion">
+                <h3><a href="#">Section 1</a></h3>
+                <div>
+                    <p>Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.</p>
+                </div>
+                <h3><a href="#">Section 2</a></h3>
+                <div>
+                    <p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna. </p>
+                </div>
+                <h3><a href="#">Section 3</a></h3>
+                <div>
+                    <p>Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui. </p>
+                    <ul>
+                        <li>List item one</li>
+                        <li>List item two</li>
+                        <li>List item three</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <!-- Dialog -->
+            <h2 class="demoHeaders">Dialog</h2>
+            <p><a class="ui-state-default ui-corner-all" id="dialog_link" href="#"><span class="ui-icon ui-icon-newwin"></span>Open Dialog</a></p>
+            
+            
+            <h2 class="demoHeaders">Overlay and Shadow Classes</h2>
+            <div class="fakewindowcontain" style="position: relative; width: 96%; height: 200px; padding: 1% 4%; overflow: hidden;">
+                <p>Lorem ipsum dolor sit amet,  Nulla nec tortor. Donec id elit quis purus consectetur consequat. </p><p>Nam congue semper tellus. Sed erat dolor, dapibus sit amet, venenatis ornare, ultrices ut, nisi. Aliquam ante. Suspendisse scelerisque dui nec velit. Duis augue augue, gravida euismod, vulputate ac, facilisis id, sem. Morbi in orci. </p><p>Nulla purus lacus, pulvinar vel, malesuada ac, mattis nec, quam. Nam molestie scelerisque quam. Nullam feugiat cursus lacus.orem ipsum dolor sit amet, consectetur adipiscing elit. Donec libero risus, commodo vitae, pharetra mollis, posuere eu, pede. Nulla nec tortor. Donec id elit quis purus consectetur consequat. </p><p>Nam congue semper tellus. Sed erat dolor, dapibus sit amet, venenatis ornare, ultrices ut, nisi. Aliquam ante. Suspendisse scelerisque dui nec velit. Duis augue augue, gravida euismod, vulputate ac, facilisis id, sem. Morbi in orci. Nulla purus lacus, pulvinar vel, malesuada ac, mattis nec, quam. Nam molestie scelerisque quam. </p><p>Nullam feugiat cursus lacus.orem ipsum dolor sit amet, consectetur adipiscing elit. Donec libero risus, commodo vitae, pharetra mollis, posuere eu, pede. Nulla nec tortor. Donec id elit quis purus consectetur consequat. Nam congue semper tellus. Sed erat dolor, dapibus sit amet, venenatis ornare, ultrices ut, nisi. Aliquam ante. </p><p>Suspendisse scelerisque dui nec velit. Duis augue augue, gravida euismod, vulputate ac, facilisis id, sem. Morbi in orci. Nulla purus lacus, pulvinar vel, malesuada ac, mattis nec, quam. Nam molestie scelerisque quam. Nullam feugiat cursus lacus.orem ipsum dolor sit amet, consectetur adipiscing elit. Donec libero risus, commodo vitae, pharetra mollis, posuere eu, pede. Nulla nec tortor. Donec id elit quis purus consectetur consequat.</p>
+                
+                <!-- ui-dialog -->
+                <div class="ui-overlay"><div class="ui-widget-overlay"></div><div style="width: 302px; height: 152px; position: absolute; left: 50px; top: 30px;" class="ui-widget-shadow ui-corner-all"></div></div>
+                <div class="ui-widget ui-widget-content ui-corner-all" style="position: absolute; width: 280px; height: 130px; left: 50px; top: 30px; padding: 10px;">
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                </div>
+            
+            </div>
+
+            
+            <!-- ui-dialog -->
+            <div title="Dialog Title" id="dialog">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+
+        </div>
+        <div class="clearfix" id="compGroupB">
+        
+            <!-- Button -->
+            <h2 class="demoHeaders">Button</h2>
+            <button id="button">A button element</button>
+            <form style="margin-top: 1em;">
+                <div id="radioset">
+                    <input type="radio" name="radio" id="radio1"><label for="radio1">Choice 1</label>
+                    <input type="radio" checked="checked" name="radio" id="radio2"><label for="radio2">Choice 2</label>
+                    <input type="radio" name="radio" id="radio3"><label for="radio3">Choice 3</label>
+                </div>
+            </form>
+            
+            <!-- Autocomplete -->
+            <h2 class="demoHeaders">Autocomplete</h2>
+            <div>
+                <input title="type &quot;a&quot;" style="z-index: 100; position: relative;" id="autocomplete">
+            </div>
+                
+            <!-- Slider -->
+            <h2 class="demoHeaders">Slider</h2>
+            <div id="slider"></div>
+
+            <!-- Datepicker -->
+            <h2 class="demoHeaders">Datepicker</h2>
+            <div id="datepicker"></div>
+            
+            <!-- Progressbar -->
+            <h2 class="demoHeaders">Progressbar</h2>    
+            <div id="progressbar"></div>
+            
+            <!-- Highlight / Error -->
+            <h2 class="demoHeaders">Highlight / Error</h2>
+            <div class="ui-widget">
+                <div style="margin-top: 20px; padding: 0pt 0.7em;" class="ui-state-highlight ui-corner-all"> 
+                    <p><span style="float: left; margin-right: 0.3em;" class="ui-icon ui-icon-info"></span>
+                    <strong>Hey!</strong> Sample ui-state-highlight style.</p>
+                </div>
+            </div>
+            <br>
+            <div class="ui-widget">
+                <div style="padding: 0pt 0.7em;" class="ui-state-error ui-corner-all"> 
+                    <p><span style="float: left; margin-right: 0.3em;" class="ui-icon ui-icon-alert"></span> 
+                    <strong>Alert:</strong> Sample ui-state-error style.</p>
+                </div>
+            </div>
+    
+        </div>
+    </tal:main-macro>
+  </div>
+</body>
+</html>
+      
