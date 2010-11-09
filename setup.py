@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.7.4.3dev'
+version = '1.7.4.2'
 
 setup(name='collective.js.datatables',
       version=version,
@@ -15,7 +15,7 @@ setup(name='collective.js.datatables',
         "Programming Language :: Python",
         ],
       keywords='',
-      author='',
+      author='JeanMichel FRANCOIS aka toutpt',
       author_email='jeanmichel.francois@makina-corpus.com',
       url='http://svn.plone.org/svn/collective/',
       license='GPL',
