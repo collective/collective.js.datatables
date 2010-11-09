@@ -31,6 +31,12 @@
       name="jquery.datatables"
       directory="resources" />
 
+  <!-- compatibility with esteele version -->
+  <browser:resourceDirectory
+      name="datatables"
+      directory="resources/media"
+      />
+
   <browser:page
     name="example.datatables"
     for="*"

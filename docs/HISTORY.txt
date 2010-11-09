@@ -4,8 +4,8 @@ Changelog
 1.7.4.2 (unreleased)
 --------------------
 
-- Nothing changed yet.
-
+- Add compatibility with old version from esteele
+  [toutpt]
 
 1.7.4.1 (2010-11-09)
 --------------------
