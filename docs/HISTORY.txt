@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.7.5.0 (unreleased)
+--------------------
+
+- Upgrade to the latest version of jquery.datatables.
+  [mj]
+
 1.7.4.3 (2010-11-16)
 --------------------
 
