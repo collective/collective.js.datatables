@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.7.5.0'
+version = '1.7.5.1dev'
 
 setup(name='collective.js.datatables',
       version=version,
