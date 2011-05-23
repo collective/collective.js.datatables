@@ -1,0 +1,14 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:gs="http://namespaces.zope.org/genericsetup"
+  i18n_domain="collective.js.datatables">
+
+  <gs:upgradeStep
+    title="1-1752"
+    description=""
+    source="1"
+    destination="1752"
+    handler=".u_1_1752.upgrade"
+    profile="collective.js.datatables:default"/>
+
+</configure>
