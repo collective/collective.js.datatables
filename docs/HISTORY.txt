@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.7.5.2 (unreleased)
+1.7.5.2 (2011-05-23)
 --------------------
 
 - Remove compression none in default profile. add upgrade step
