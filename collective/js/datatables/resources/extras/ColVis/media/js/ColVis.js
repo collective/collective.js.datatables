@@ -1,6 +1,6 @@
 /*
  * File:        ColVis.js
- * Version:     1.0.3
+ * Version:     1.0.4
  * CVS:         $Id$
  * Description: Controls for column visiblity in DataTables
  * Author:      Allan Jardine (www.sprymedia.co.uk)
@@ -23,12 +23,17 @@
  * @constructor
  * @param {object} DataTables settings object
  */
-ColVis = function( oDTSettings )
+ColVis = function( oDTSettings, oInit )
 {
 	/* Santiy check that we are a new instance */
 	if ( !this.CLASS || this.CLASS != "ColVis" )
 	{
 		alert( "Warning: ColVis must be initialised with the keyword 'new'" );
+	}
+	
+	if ( typeof oInit == 'undefined' )
+	{
+		oInit = {};
 	}
 	
 	
@@ -49,12 +54,36 @@ ColVis = function( oDTSettings )
 		"dt": null,
 		
 		/**
+		 * Customisation object
+		 *  @property oInit
+		 *  @type     Object
+		 *  @default  passed in
+		 */
+		"oInit": oInit,
+		
+		/**
+		 * Callback function to tell the user when the state has changed
+		 *  @property fnStateChange
+		 *  @type     function
+		 *  @default  null
+		 */
+		"fnStateChange": null,
+		
+		/**
 		 * Mode of activation. Can be 'click' or 'mouseover'
 		 *  @property activate
 		 *  @type     String
 		 *  @default  click
 		 */
 		"activate": "click",
+		
+		/**
+		 * Position of the collection menu when shown - align "left" or "right"
+		 *  @property sAlign
+		 *  @type     String
+		 *  @default  right
+		 */
+		"sAlign": "left",
 		
 		/**
 		 * Text used for the button
@@ -78,7 +107,31 @@ ColVis = function( oDTSettings )
 		 *  @type     Array
 		 *  @default  []
 		 */
-		"aiExclude": []
+		"aiExclude": [],
+		
+		/**
+		 * Store the original viisbility settings so they could be restored
+		 *  @property abOriginal
+		 *  @type     Array
+		 *  @default  []
+		 */
+		"abOriginal": [],
+		
+		/**
+		 * Show restore button
+		 *  @property bRestore
+		 *  @type     Array
+		 *  @default  []
+		 */
+		"bRestore": false,
+		
+		/**
+		 * Restore button text
+		 *  @property sRestore
+		 *  @type     String
+		 *  @default  Restore original
+		 */
+		"sRestore": "Restore original"
 	};
 	
 	
@@ -132,12 +185,19 @@ ColVis = function( oDTSettings )
 		 *  @type     Array
 		 *  @default  []
 		 */
-		"buttons": []
+		"buttons": [],
+		
+		/**
+		 * Restore button
+		 *  @property restore
+		 *  @type     Node
+		 *  @default  null
+		 */
+		"restore": null
 	};
 	
-	
-	
-	
+	/* Store global reference */
+	ColVis.aInstances.push( this );
 	
 	/* Constructor logic */
 	this.s.dt = oDTSettings;
@@ -162,9 +222,17 @@ ColVis.prototype = {
 		/* Remove the old buttons */
 		for ( var i=this.dom.buttons.length-1 ; i>=0 ; i-- )
 		{
-			this.dom.collection.removeChild( this.dom.buttons[i] )
+			if ( this.dom.buttons[i] !== null )
+			{
+				this.dom.collection.removeChild( this.dom.buttons[i] );
+			}
 		}
 		this.dom.buttons.splice( 0, this.dom.buttons.length );
+		
+		if ( this.dom.restore )
+		{
+			this.dom.restore.parentNode( this.dom.restore );
+		}
 		
 		/* Re-add them (this is not the optimal way of doing this, it is fast and effective) */
 		this._fnAddButtons();
@@ -194,6 +262,7 @@ ColVis.prototype = {
 		this.dom.wrapper.className = "ColVis TableTools";
 		
 		this.dom.button = this._fnDomBaseButton( this.s.buttonText );
+		this.dom.button.className += " ColVis_MasterButton";
 		this.dom.wrapper.appendChild( this.dom.button );
 		
 		this.dom.catcher = this._fnDomCatcher();
@@ -202,6 +271,13 @@ ColVis.prototype = {
 		
 		this._fnAddButtons();
 		
+		/* Store the original visbility information */
+		for ( var i=0, iLen=this.s.dt.aoColumns.length ; i<iLen ; i++ )
+		{
+			this.s.abOriginal.push( this.s.dt.aoColumns[i].bVisible );
+		}
+		
+		/* Update on each draw */
 		this.s.dt.aoDrawCallback.push( {
 			"fn": function () {
 				that._fnDrawCallback.call( that );
@@ -219,24 +295,41 @@ ColVis.prototype = {
 	 */
 	"_fnApplyCustomisation": function ()
 	{
-		if ( typeof this.s.dt.oInit.oColVis != 'undefined' )
+		var oConfig = this.s.oInit;
+		
+		if ( typeof oConfig.activate != 'undefined' )
 		{
-			var oConfig = this.s.dt.oInit.oColVis;
-			
-			if ( typeof oConfig.activate != 'undefined' )
-			{
-				this.s.activate = oConfig.activate;
-			}
-			
-			if ( typeof oConfig.buttonText != 'undefined' )
-			{
-				this.s.buttonText = oConfig.buttonText;
-			}
-			
-			if ( typeof oConfig.aiExclude != 'undefined' )
-			{
-				this.s.aiExclude = oConfig.aiExclude;
-			}
+			this.s.activate = oConfig.activate;
+		}
+		
+		if ( typeof oConfig.buttonText != 'undefined' )
+		{
+			this.s.buttonText = oConfig.buttonText;
+		}
+		
+		if ( typeof oConfig.aiExclude != 'undefined' )
+		{
+			this.s.aiExclude = oConfig.aiExclude;
+		}
+		
+		if ( typeof oConfig.bRestore != 'undefined' )
+		{
+			this.s.bRestore = oConfig.bRestore;
+		}
+		
+		if ( typeof oConfig.sRestore != 'undefined' )
+		{
+			this.s.sRestore = oConfig.sRestore;
+		}
+		
+		if ( typeof oConfig.sAlign != 'undefined' )
+		{
+			this.s.sAlign = oConfig.sAlign;
+		}
+		
+		if ( typeof oConfig.fnStateChange != 'undefined' )
+		{
+			this.s.fnStateChange = oConfig.fnStateChange;
 		}
 	},
 	
@@ -294,6 +387,44 @@ ColVis.prototype = {
 				this.dom.buttons.push( null );
 			}
 		}
+		
+		if ( this.s.bRestore )
+		{
+			nButton = this._fnDomRestoreButton();
+			nButton.className += " ColVis_Restore";
+			this.dom.buttons.push( nButton );
+			this.dom.collection.appendChild( nButton );
+		}
+	},
+	
+	
+	/**
+	 * Create a button which allows a "restore" action
+	 *  @method  _fnDomRestoreButton
+	 *  @returns {Node} Created button
+	 *  @private 
+	 */
+	"_fnDomRestoreButton": function ()
+	{
+		var
+			that = this,
+		  nButton = document.createElement('button'),
+		  nSpan = document.createElement('span');
+		
+		nButton.className = !this.s.dt.bJUI ? "ColVis_Button TableTools_Button" :
+			"ColVis_Button TableTools_Button ui-button ui-state-default";
+		nButton.appendChild( nSpan );
+		$(nSpan).html( '<span class="ColVis_title">'+this.s.sRestore+'</span>' );
+		
+		$(nButton).click( function (e) {
+			for ( var i=0, iLen=that.s.abOriginal.length ; i<iLen ; i++ )
+			{
+				that.s.dt.oInstance.fnSetColumnVis( i, that.s.abOriginal[i], false );
+			}
+			that.s.dt.oInstance.fnDraw( false );
+		} );
+		
+		return nButton;
 	},
 	
 	
@@ -333,6 +464,11 @@ ColVis.prototype = {
 			$.fn.dataTableExt.iApiIndex = that._fnDataTablesApiIndex.call(that);
 			that.s.dt.oInstance.fnSetColumnVis( i, showHide );
 			$.fn.dataTableExt.iApiIndex = oldIndex; /* Restore */
+			
+			if ( that.s.fnStateChange !== null )
+			{
+				that.s.fnStateChange.call( that, i, showHide );
+			}
 		} );
 		
 		return nButton;
@@ -443,7 +579,7 @@ ColVis.prototype = {
 		nBackground.style.position = "absolute";
 		nBackground.style.left = "0px";
 		nBackground.style.top = "0px";
-		nBackground.className = "TableTools_collectionBackground";
+		nBackground.className = "ColVis_collectionBackground TableTools_collectionBackground";
 		$(nBackground).css('opacity', 0);
 		
 		$(nBackground).click( function () {
@@ -481,8 +617,8 @@ ColVis.prototype = {
 		var iDivX = parseInt(oPos.left, 10);
 		var iDivY = parseInt(oPos.top + $(this.dom.button).outerHeight(), 10);
 		
-		nHidden.style.left = iDivX+"px";
 		nHidden.style.top = iDivY+"px";
+		nHidden.style.left = iDivX+"px";
 		nHidden.style.display = "block";
 		$(nHidden).css('opacity',0);
 		
@@ -503,6 +639,9 @@ ColVis.prototype = {
 		document.body.appendChild( this.dom.catcher );
 		
 		/* Visual corrections to try and keep the collection visible */
+		nHidden.style.left = this.s.sAlign=="left" ?
+			iDivX+"px" : (iDivX-$(nHidden).outerWidth()+$(this.dom.button).outerWidth())+"px";
+		
 		var iDivWidth = $(nHidden).outerWidth();
 		var iDivHeight = $(nHidden).outerHeight();
 		
@@ -633,9 +772,9 @@ ColVis.prototype.CLASS = "ColVis";
  * ColVis version
  *  @constant  VERSION
  *  @type      String
- *  @default   1.0.3
+ *  @default   1.0.4.dev
  */
-ColVis.VERSION = "1.0.3";
+ColVis.VERSION = "1.0.4";
 ColVis.prototype.VERSION = ColVis.VERSION;
 
 
@@ -655,8 +794,9 @@ if ( typeof $.fn.dataTable == "function" &&
 {
 	$.fn.dataTableExt.aoFeatures.push( {
 		"fnInit": function( oDTSettings ) {
-			var oColvis = new ColVis( oDTSettings );
-			ColVis.aInstances.push( oColvis );
+			var init = (typeof oDTSettings.oInit.oColVis == 'undefined') ?
+				{} : oDTSettings.oInit.oColVis;
+			var oColvis = new ColVis( oDTSettings, init );
 			return oColvis.dom.wrapper;
 		},
 		"cFeature": "C",
