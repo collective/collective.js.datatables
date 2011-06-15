@@ -11,4 +11,12 @@
     handler=".u_1_1752.upgrade"
     profile="collective.js.datatables:default"/>
 
+  <gs:upgradeStep
+    title="update jquery.dataTables to 1.8"
+    description=""
+    source="1752"
+    destination="1800"
+    handler=".upgrade_1752_1800.upgrade"
+    profile="collective.js.datatables:default"/>
+
 </configure>
