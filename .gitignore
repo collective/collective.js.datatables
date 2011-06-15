@@ -11,4 +11,5 @@ eggs/
 include/
 lib/
 parts/
+dist/
 
