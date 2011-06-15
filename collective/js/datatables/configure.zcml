@@ -20,11 +20,11 @@
       file="resources/media/js/jquery.dataTables.js" />
 
   <browser:resource
-      name="jquery.datatables-1.7.4.js"
+      name="jquery.datatables-1.8.js"
       file="resources/media/js/jquery.dataTables.js" />
 
   <browser:resource
-      name="jquery.datatables-1.7.4.min.js"
+      name="jquery.datatables-1.8.min.js"
       file="resources/media/js/jquery.dataTables.min.js" />
 
   <browser:resourceDirectory
