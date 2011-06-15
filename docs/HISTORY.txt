@@ -1,17 +1,16 @@
 Changelog
 =========
 
-1.7.5.3 (unreleased)
+1.8.1 (2011-06-15)
 --------------------
 
-- Nothing changed yet.
-
+- Upgrade to the latest version of jquery.datatables.
+  [zupo]
 
 1.7.5.2 (2011-05-23)
 --------------------
 
 - Remove compression none in default profile. add upgrade step
-
 
 1.7.5.1 (2011-01-13)
 --------------------
