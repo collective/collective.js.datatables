@@ -5,7 +5,7 @@ DataTables_ is a plug-in for the jQuery_ Javascript library.
 It is a highly flexible tool, based upon the foundations of progressive
 enhancement, which will add advanced interaction controls to any HTML table.
 
-This version include datatables 1.7.4 without examples available in the source
+This version include datatables 1.8 without examples available in the source
 distribution of the plugin. It is provided with an @@example.datatables view.
 
 Install
