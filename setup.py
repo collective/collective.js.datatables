@@ -6,7 +6,7 @@ version = '1.8.1dev'
 setup(name='collective.js.datatables',
       version=version,
       description="Plone Integration of jquery.dataTables plugin",
-      long_description=open("README.txt").read() + "\n" +
+      long_description=open("README.rst").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from
       # http://pypi.python.org/pypi?%3Aaction=list_classifiers
