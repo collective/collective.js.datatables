@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.8.0.1 (unreleased)
-------------------
+1.8.0.1 (2011-08-08)
+--------------------
 
 - Applied commit 547af3f4987d6194438d from github.com/DataTables/TableTools.git that fixes TableTools when using server-side processing.
   [zupo]
