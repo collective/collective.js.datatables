@@ -4,8 +4,8 @@ Changelog
 1.8.0.2 (unreleased)
 --------------------
 
-- Nothing changed yet.
-
+- update contributors
+  [toutpt]
 
 1.8.0.1 (2011-08-08)
 --------------------
