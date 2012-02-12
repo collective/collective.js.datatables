@@ -1,7 +1,11 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.8.0.3dev'
+
+def read(*rnames):
+    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
+
+version = read('collective', 'js', 'datatables', 'version.txt').strip()
 
 setup(name='collective.js.datatables',
       version=version,
