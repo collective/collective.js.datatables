@@ -1,11 +1,11 @@
 Changelog
 =========
 
-1.8.0.3 (unreleased)
---------------------
+1.9 (unreleased)
+----------------
 
-- Nothing changed yet.
-
+- Upgrade to the latest version of jquery.datatables.
+  [zupo]
 
 1.8.0.2 (2011-09-26)
 --------------------
