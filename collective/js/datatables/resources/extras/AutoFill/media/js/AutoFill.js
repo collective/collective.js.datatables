@@ -1,6 +1,6 @@
 /*
  * File:        AutoFill.js
- * Version:     1.1.1
+ * Version:     1.1.2
  * CVS:         $Id$
  * Description: AutoFill for DataTables
  * Author:      Allan Jardine (www.sprymedia.co.uk)
@@ -11,7 +11,12 @@
  * Project:     DataTables
  * Contact:     www.sprymedia.co.uk/contact
  * 
- * Copyright 2010 Allan Jardine, all rights reserved.
+ * Copyright 2010-2011 Allan Jardine, all rights reserved.
+ *
+ * This source file is free software, under either the GPL v2 license or a
+ * BSD style license, available at:
+ *   http://datatables.net/license_gpl2
+ *   http://datatables.net/license_bsd
  *
  */
 
@@ -342,7 +347,7 @@ AutoFill.prototype = {
 	 */
 	"_fnTargetCoords": function ( nTd )
 	{
-		var nTr = nTd.parentNode;
+		var nTr = $(nTd).parents('tr')[0];
 		
 		return {
 			"x": $('td', nTr).index(nTd),
@@ -749,7 +754,8 @@ AutoFill.prototype = {
 		}
 		
 		/* Check that we are allowed to AutoFill this column or not */
-		var iX = this._fnTargetCoords(e.target).x;
+		var nTd = (e.target.nodeName.toLowerCase() == 'td') ? e.target : $(e.target).parents('td')[0];
+		var iX = this._fnTargetCoords(nTd).x;
 		if ( !this.s.columns[iX].enable )
 		{
 			return;
@@ -758,8 +764,8 @@ AutoFill.prototype = {
 		var filler = this.dom.filler;
 		if (e.type == 'mouseover')
 		{
-			this.dom.currentTarget = e.target;
-			this._fnFillerPosition( e.target );
+			this.dom.currentTarget = nTd;
+			this._fnFillerPosition( nTd );
 			
 			filler.style.display = "block";
 		}
@@ -805,10 +811,10 @@ AutoFill.prototype.CLASS = "AutoFill";
  * AutoFill version
  *  @constant  VERSION
  *  @type      String
- *  @default   1.1.1
+ *  @default   1.1.2
  */
-AutoFill.VERSION = "1.1.1";
-AutoFill.prototype.VERSION = "1.1.1";
+AutoFill.VERSION = "1.1.2";
+AutoFill.prototype.VERSION = AutoFill.VERSION;
 
 
 })(jQuery);
