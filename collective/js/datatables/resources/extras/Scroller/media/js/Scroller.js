@@ -2,7 +2,7 @@
  * @summary     Scroller
  * @description Virtual rendering for DataTables
  * @file        Scroller.js
- * @version     1.0.0
+ * @version     1.0.1
  * @author      Allan Jardine (www.sprymedia.co.uk)
  * @license     GPL v2 or BSD 3 point style
  * @contact     www.sprymedia.co.uk/contact
@@ -130,6 +130,13 @@ var Scroller = function ( oDTSettings, oOpts ) {
 		"rowHeight": null,
 		
 		/** 
+		 * Auto row height or not indicator
+		 *  @type     bool
+		 *  @default  0
+		 */
+		"autoHeight": true,
+		
+		/** 
 		 * Pixel height of the viewport
 		 *  @type     int
 		 *  @default  0
@@ -173,7 +180,7 @@ var Scroller = function ( oDTSettings, oOpts ) {
 	};
 
 	/* Attach the instance to the DataTables instance so it can be accessed */
-	this.s.dt.oInstance.oScroller = this;
+	this.s.dt.oScroller = this;
 	
 	/* Let's do it */
 	this._fnConstruct();
@@ -191,18 +198,18 @@ Scroller.prototype = {
 	 *  @param {int} iRow Row number to calculate the position of
 	 *  @returns {int} Pixels
 	 *  @example
-	 *  	$(document).ready(function() {
-	 *  		$('#example').dataTable( {
-	 *  			"sScrollY": "200px",
-	 *  			"sAjaxSource": "media/dataset/large.txt",
-	 *  			"sDom": "frtiS",
-	 *  			"bDeferRender": true,
-	 *  			"fnInitComplete": function () {
-	 *  				// Find where row 25 is
-	 *  				alert( this.oScroller.fnRowToPixels( 25 ) );
-	 *  			}
-	 *  		} );
-	 *  	} );
+	 *    $(document).ready(function() {
+	 *      $('#example').dataTable( {
+	 *        "sScrollY": "200px",
+	 *        "sAjaxSource": "media/dataset/large.txt",
+	 *        "sDom": "frtiS",
+	 *        "bDeferRender": true,
+	 *        "fnInitComplete": function (o) {
+	 *          // Find where row 25 is
+	 *          alert( o.oScroller.fnRowToPixels( 25 ) );
+	 *        }
+	 *      } );
+	 *    } );
 	 */
 	"fnRowToPixels": function ( iRow )
 	{
@@ -215,18 +222,18 @@ Scroller.prototype = {
 	 *  @param {int} iPixels Offset from top to caluclate the row number of
 	 *  @returns {int} Row index
 	 *  @example
-	 *  	$(document).ready(function() {
-	 *  		$('#example').dataTable( {
-	 *  			"sScrollY": "200px",
-	 *  			"sAjaxSource": "media/dataset/large.txt",
-	 *  			"sDom": "frtiS",
-	 *  			"bDeferRender": true,
-	 *  			"fnInitComplete": function () {
-	 *  				// Find what row number is at 500px
-	 *  				alert( this.oScroller.fnPixelsToRow( 500 ) );
-	 *  			}
-	 *  		} );
-	 *  	} );
+	 *    $(document).ready(function() {
+	 *      $('#example').dataTable( {
+	 *        "sScrollY": "200px",
+	 *        "sAjaxSource": "media/dataset/large.txt",
+	 *        "sDom": "frtiS",
+	 *        "bDeferRender": true,
+	 *        "fnInitComplete": function (o) {
+	 *          // Find what row number is at 500px
+	 *          alert( o.oScroller.fnPixelsToRow( 500 ) );
+	 *        }
+	 *      } );
+	 *    } );
 	 */
 	"fnPixelsToRow": function ( iPixels )
 	{
@@ -240,18 +247,22 @@ Scroller.prototype = {
 	 *  @param {bool} [bAnimate=true] Animate the transision or not 
 	 *  @returns {void}
 	 *  @example
-	 *  	$(document).ready(function() {
-	 *  		$('#example').dataTable( {
-	 *  			"sScrollY": "200px",
-	 *  			"sAjaxSource": "media/dataset/large.txt",
-	 *  			"sDom": "frtiS",
-	 *  			"bDeferRender": true,
-	 *  			"fnInitComplete": function () {
-	 *  				// Immediately scroll to row 1000
-	 *  				this.oScroller.fnScrollToRow( 1000 );
-	 *  			}
-	 *  		} );
-	 *  	} );
+	 *    $(document).ready(function() {
+	 *      $('#example').dataTable( {
+	 *        "sScrollY": "200px",
+	 *        "sAjaxSource": "media/dataset/large.txt",
+	 *        "sDom": "frtiS",
+	 *        "bDeferRender": true,
+	 *        "fnInitComplete": function (o) {
+	 *          // Immediately scroll to row 1000
+	 *          o.oScroller.fnScrollToRow( 1000 );
+	 *        }
+	 *      } );
+	 *      
+	 *      // Sometime later on use the following to scroll to row 500...
+	 *          var oSettings = $('#example').dataTable().fnSettings();
+	 *      oSettings.oScroller.fnScrollToRow( 500 );
+	 *    } );
 	 */
 	"fnScrollToRow": function ( iRow, bAnimate )
 	{
@@ -265,6 +276,62 @@ Scroller.prototype = {
 		else
 		{
 			$(this.dom.scroller).scrollTop( px );
+		}
+	},
+	
+	
+	/**
+	 * Calculate and store information about how many rows are to be displayed in the scrolling
+	 * viewport, based on current dimensions in the browser's rendering. This can be particularly
+	 * useful if the table is initially drawn in a hidden element - for example in a tab.
+	 *  @param {bool} [bRedraw=true] Redraw the table automatically after the recalculation, with
+	 *    the new dimentions forming the basis for the draw. 
+	 *  @returns {void}
+	 *  @example
+	 *    $(document).ready(function() {
+	 *      // Make the example container hidden to throw off the browser's sizing
+	 *      document.getElementById('container').style.display = "none";
+	 *      var oTable = $('#example').dataTable( {
+	 *        "sScrollY": "200px",
+	 *        "sAjaxSource": "media/dataset/large.txt",
+	 *        "sDom": "frtiS",
+	 *        "bDeferRender": true,
+	 *        "fnInitComplete": function (o) {
+	 *          // Immediately scroll to row 1000
+	 *          o.oScroller.fnScrollToRow( 1000 );
+	 *        }
+	 *      } );
+	 *      
+	 *      setTimeout( function () {
+	 *        // Make the example container visible and recalculate the scroller sizes
+	 *        document.getElementById('container').style.display = "block";
+	 *        oTable.fnSettings().oScroller.fnMeasure();
+	 *      }, 3000 );
+	 */
+	"fnMeasure": function ( bRedraw )
+	{
+		if ( this.s.autoHeight )
+		{
+			this._fnCalcRowHeight();
+		}
+
+		this.s.viewportHeight = $(this.dom.scroller).height();
+		this.s.viewportRows = parseInt( this.s.viewportHeight/this.s.rowHeight, 10 )+1;
+		this.s.dt._iDisplayLength = this.s.viewportRows * 3;
+		
+		if ( this.s.trace )
+		{
+				console.log(
+					'Row height: '+this.s.rowHeight +' '+
+					'Viewport height: '+this.s.viewportHeight +' '+
+					'Viewport rows: '+ this.s.viewportRows +' '+
+					'Display rows: '+ this.s.dt._iDisplayLength
+				);
+		}
+		
+		if ( typeof bRedraw == 'undefined' || bRedraw )
+		{
+			this.s.dt.oInstance.fnDraw();
 		}
 	},
 	
@@ -301,17 +368,12 @@ Scroller.prototype = {
 		this.dom.table.style.top = "0px";
 		this.dom.table.style.left = "0px";
 
-		/* Calcuate and store information about how many rows are displayed in the scrolling
-		 * viewport
-		 */
-		if ( this.s.rowHeight == 'auto' )
+		/* Initial size calculations */
+		if ( this.s.rowHeight != 'auto' )
 		{
-			this._fnCalcRowHeight();
+			this.s.rowHeight = false;
 		}
-
-		this.s.viewportHeight = $(this.dom.scroller).height();
-		this.s.viewportRows = parseInt( this.s.viewportHeight/this.s.rowHeight, 10 )+1;
-		this.s.dt._iDisplayLength = this.s.viewportRows * 3;
+		this.fnMeasure();
 
 		/* Scrolling callback to see if a page change is needed */
 		$(this.dom.scroller).scroll( function () {
@@ -325,7 +387,6 @@ Scroller.prototype = {
 			},
 			"sName": "Scroller"
 		} );
-
 		
 		/* Add a state saving parameter to the DT state saving so we can restore the exact
 		 * position of the scrolling
@@ -361,7 +422,8 @@ Scroller.prototype = {
 				' Showing rows '+this.fnPixelsToRow(iScrollTop)+
 				' to '+this.fnPixelsToRow(iScrollTop+$(this.dom.scroller).height())+
 				' in the viewport, with rows '+this.s.dt._iDisplayStart+
-				' to '+(this.s.dt._iDisplayEnd)+' rendered by the DataTable');
+				' to '+(this.s.dt._iDisplayEnd)+' rendered by the DataTable'
+			);
 		}
 
 		/* Update the table's information display for what is now in the viewport */
@@ -390,6 +452,10 @@ Scroller.prototype = {
 			{
 				/* At the end of the table */
 				iTopRow = this.s.dt.fnRecordsDisplay() - this.s.dt._iDisplayLength;
+				if ( iTopRow < 0 )
+				{
+					iTopRow = 0;
+				}
 			}
 			else if ( iTopRow % 2 !== 0 )
 			{
@@ -473,10 +539,11 @@ Scroller.prototype = {
 		if ( this.s.trace )
 		{
 			console.log(
-				"Table redraw. Table top: "+iTableTop+"px. Table bottom: "+
-				this.s.tableBottom+". Scroll boundary top: "+
-				this.s.redrawTop+". Scroll boundary bottom: "+
-				this.s.redrawBottom);
+				"Table redraw. Table top: "+iTableTop+"px "+
+				"Table bottom: "+this.s.tableBottom+" "+
+				"Scroll boundary top: "+this.s.redrawTop+" "+
+				"Scroll boundary bottom: "+this.s.redrawBottom+" "+
+				"Rows drawn: "+this.s.dt._iDisplayLength);
 		}
 
 		/* Because of the order of the DT callbacks, the info update will
@@ -517,6 +584,7 @@ Scroller.prototype = {
 	"_fnCalcRowHeight": function ()
 	{
 		var
+			nDiv = document.createElement('div'),
 			nTable = this.s.dt.nTable.cloneNode( false ),
 			nBody = document.createElement( 'tbody' ),
 			nTr = document.createElement('tr'),
@@ -526,9 +594,11 @@ Scroller.prototype = {
 		nTr.appendChild( nTd );
 		nBody.appendChild( nTr );
 		nTable.appendChild( nBody );
-		document.body.appendChild( nTable );
+		nDiv.className = this.s.dt.oClasses.sScrollBody;
+		nDiv.appendChild( nTable );
+		document.body.appendChild( nDiv );
 		this.s.rowHeight = $(nTr).height();
-		document.body.removeChild( nTable );
+		document.body.removeChild( nDiv );
 	},
 
 
@@ -541,13 +611,19 @@ Scroller.prototype = {
 	 */
 	"_fnInfo": function ()
 	{
+		if ( !this.s.dt.oFeatures.bInfo )
+		{
+			return;
+		}
+		
 		var
 			dt = this.s.dt,
 			iScrollTop = this.dom.scroller.scrollTop,
 			iStart = this.fnPixelsToRow(iScrollTop)+1, 
-			iEnd = this.fnPixelsToRow(iScrollTop+$(this.dom.scroller).height()),
 			iMax = dt.fnRecordsTotal(),
 			iTotal = dt.fnRecordsDisplay(),
+			iPossibleEnd = this.fnPixelsToRow(iScrollTop+$(this.dom.scroller).height()),
+			iEnd = iTotal < iPossibleEnd ? iTotal : iPossibleEnd,
 			sStart = dt.fnFormatNumber( iStart ),
 			sEnd = dt.fnFormatNumber( iEnd ),
 			sMax = dt.fnFormatNumber( iMax ),
@@ -589,9 +665,12 @@ Scroller.prototype = {
 		}
 		
 		var n = dt.aanFeatures.i;
-		for ( var i=0, iLen=n.length ; i<iLen ; i++ )
+		if ( typeof n != 'undefined' )
 		{
-			$(n[i]).html( sOut );
+			for ( var i=0, iLen=n.length ; i<iLen ; i++ )
+			{
+				$(n[i]).html( sOut );
+			}
 		}
 	}
 };
@@ -617,14 +696,14 @@ Scroller.oDefaults = {
 	 *  @default  false
 	 *  @static
 	 *  @example
-	 *  	var oTable = $('#example').dataTable( {
-	 *      	"sScrollY": "200px",
-	 *      	"sDom": "frtiS",
-	 *      	"bDeferRender": true
-	 *      	"oScroller": {
-	 *      		"trace": true
-	 *      	}
-	 *  	} );
+	 *    var oTable = $('#example').dataTable( {
+	 *        "sScrollY": "200px",
+	 *        "sDom": "frtiS",
+	 *        "bDeferRender": true
+	 *        "oScroller": {
+	 *          "trace": true
+	 *        }
+	 *    } );
 	 */
 	"trace": false,
 
@@ -635,14 +714,14 @@ Scroller.oDefaults = {
 	 *  @default  auto
 	 *  @static
 	 *  @example
-	 *  	var oTable = $('#example').dataTable( {
-	 *      	"sScrollY": "200px",
-	 *      	"sDom": "frtiS",
-	 *      	"bDeferRender": true
-	 *      	"oScroller": {
-	 *      		"rowHeight": 30
-	 *      	}
-	 *  	} );
+	 *    var oTable = $('#example').dataTable( {
+	 *        "sScrollY": "200px",
+	 *        "sDom": "frtiS",
+	 *        "bDeferRender": true
+	 *        "oScroller": {
+	 *          "rowHeight": 30
+	 *        }
+	 *    } );
 	 */
 	"rowHeight": "auto",
 
@@ -654,14 +733,14 @@ Scroller.oDefaults = {
 	 *  @default  200
 	 *  @static
 	 *  @example
-	 *  	var oTable = $('#example').dataTable( {
-	 *      	"sScrollY": "200px",
-	 *      	"sDom": "frtiS",
-	 *      	"bDeferRender": true
-	 *      	"oScroller": {
-	 *      		"serverWait": 100
-	 *      	}
-	 *  	} );
+	 *    var oTable = $('#example').dataTable( {
+	 *        "sScrollY": "200px",
+	 *        "sDom": "frtiS",
+	 *        "bDeferRender": true
+	 *        "oScroller": {
+	 *          "serverWait": 100
+	 *        }
+	 *    } );
 	 */
 	"serverWait": 200
 };
@@ -689,7 +768,7 @@ Scroller.prototype.CLASS = "Scroller";
  *  @default   See code
  *  @static
  */
-Scroller.VERSION = "1.0.0";
+Scroller.VERSION = "1.0.1";
 Scroller.prototype.CLASS = Scroller.VERSION;
 
 

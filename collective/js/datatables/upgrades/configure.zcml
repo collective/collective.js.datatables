@@ -19,4 +19,12 @@
     handler=".upgrade_1752_1800.upgrade"
     profile="collective.js.datatables:default"/>
 
+  <gs:upgradeStep
+    title="Upgrade jquery.dataTables to 1.9"
+    description=""
+    source="1800"
+    destination="1900"
+    handler=".upgrade_1800_1900.upgrade"
+    profile="collective.js.datatables:default"/>
+
 </configure>
