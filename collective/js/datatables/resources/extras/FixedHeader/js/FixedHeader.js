@@ -1,15 +1,20 @@
 /*
  * File:        FixedHeader.js
- * Version:     2.0.4
+ * Version:     2.0.5
  * Description: "Fix" a header at the top of the table, so it scrolls with the table
  * Author:      Allan Jardine (www.sprymedia.co.uk)
  * Created:     Wed 16 Sep 2009 19:46:30 BST
  * Language:    Javascript
- * License:     LGPL
+ * License:     GPL v2 or BSD 3 point style
  * Project:     Just a little bit of fun - enjoy :-)
  * Contact:     www.sprymedia.co.uk/contact
  * 
  * Copyright 2009-2010 Allan Jardine, all rights reserved.
+ *
+ * This source file is free software, under either the GPL v2 license or a
+ * BSD style license, available at:
+ *   http://datatables.net/license_gpl2
+ *   http://datatables.net/license_bsd
  */
 
 /*
@@ -86,8 +91,24 @@ var FixedHeader = function ( mTable, oInit ) {
 		this._fnUpdatePositions();
 	};
 	
+	/*
+	 * Function: fnPosition
+	 * Purpose:  Update the positioning of the fixed elements
+	 * Returns:  -
+	 * Inputs:   -
+	 */
+	this.fnPosition = function () {
+		this._fnUpdatePositions();
+	};
+	
 	/* Let's do it */
 	this.fnInit( mTable, oInit );
+	
+	/* Store the instance on the DataTables object for easy access */
+	if ( typeof mTable.fnSettings == 'function' )
+	{
+		mTable._oPluginFixedHeader = this;
+	}
 };
 
 
@@ -262,9 +283,12 @@ FixedHeader.prototype = {
 		
 		/* Just a shallow clone will do - we only want the table node */
 		nCTable = s.nTable.cloneNode( false );
+		nCTable.removeAttribute( 'id' );
 		
 		var nDiv = document.createElement( 'div' );
 		nDiv.style.position = "absolute";
+		nDiv.style.top = "0px";
+		nDiv.style.left = "0px";
 		nDiv.className += " FixedHeader_Cloned "+sType+" "+sClass;
 		
 		/* Set the zIndexes */
@@ -284,6 +308,9 @@ FixedHeader.prototype = {
 		{
 			nDiv.style.zIndex = s.oZIndexes.right;
 		}
+
+		/* remove margins since we are going to poistion it absolutely */
+		nCTable.style.margin = "0";
 		
 		/* Insert the newly cloned table into the DOM, on top of the "real" header */
 		nDiv.appendChild( nCTable );
@@ -642,12 +669,12 @@ FixedHeader.prototype = {
 		nTable.appendChild( nThead );
 		
 		/* Copy the widths across - apparently a clone isn't good enough for this */
-		jQuery("thead:eq(0)>tr th", s.nTable).each( function (i) {
-			jQuery("thead:eq(0)>tr th:eq("+i+")", nTable).width( jQuery(this).width() );
+		jQuery("thead>tr th", s.nTable).each( function (i) {
+			jQuery("thead>tr th:eq("+i+")", nTable).width( jQuery(this).width() );
 		} );
 		
-		jQuery("thead:eq(0)>tr td", s.nTable).each( function (i) {
-			jQuery("thead:eq(0)>tr th:eq("+i+")", nTable)[0].style.width( jQuery(this).width() );
+		jQuery("thead>tr td", s.nTable).each( function (i) {
+			jQuery("thead>tr td:eq("+i+")", nTable).width( jQuery(this).width() );
 		} );
 	},
 	
@@ -695,7 +722,8 @@ FixedHeader.prototype = {
 	{
 		var s = this.fnGetSettings();
 		var nTable = oCache.nNode;
-		var iCols = jQuery('tbody tr:eq(0) td', s.nTable).length;
+		var nBody = $('tbody', s.nTable)[0];
+		var iCols = $('tbody tr:eq(0) td', s.nTable).length;
 		var bRubbishOldIE = ($.browser.msie && ($.browser.version == "6.0" || $.browser.version == "7.0"));
 		
 		/* Remove any children the cloned table has */
@@ -715,25 +743,12 @@ FixedHeader.prototype = {
 		jQuery('thead tr th:gt(0)', nTable).remove();
 		jQuery('tfoot tr th:gt(0)', nTable).remove();
 		
-		/* Basically the same as used in FixedColumns - remove and copy heights */
+		/* Remove unneeded cells */
 		$('tbody tr', nTable).each( function (k) {
 			$('td:gt(0)', this).remove();
-			
-			/* Can we use some kind of object detection here?! This is very nasty - damn browsers */
-			if ( $.browser.mozilla || $.browser.opera )
-			{
-				$('td', this).height( $('tbody tr:eq('+k+')', that.dom.body).outerHeight() );
-			}
-			else
-			{
-				$('td', this).height( $('tbody tr:eq('+k+')', that.dom.body).outerHeight() - iBoxHack );
-			}
-			
-			if ( !bRubbishOldIE )
-			{
-				$('tbody tr:eq('+k+')', that.dom.body).height( $('tbody tr:eq('+k+')', that.dom.body).outerHeight() );		
-			}
 		} );
+		
+		this.fnEqualiseHeights( 'tbody', nBody.parentNode, nTable );
 		
 		var iWidth = jQuery('thead tr th:eq(0)', s.nTable).outerWidth();
 		nTable.style.width = iWidth+"px";
@@ -749,6 +764,7 @@ FixedHeader.prototype = {
 	_fnCloneTRight: function ( oCache )
 	{
 		var s = this.fnGetSettings();
+		var nBody = $('tbody', s.nTable)[0];
 		var nTable = oCache.nNode;
 		var iCols = jQuery('tbody tr:eq(0) td', s.nTable).length;
 		var bRubbishOldIE = ($.browser.msie && ($.browser.version == "6.0" || $.browser.version == "7.0"));
@@ -769,29 +785,53 @@ FixedHeader.prototype = {
 		jQuery('thead tr th:not(:nth-child('+iCols+'n))', nTable).remove();
 		jQuery('tfoot tr th:not(:nth-child('+iCols+'n))', nTable).remove();
 		
-		/* Basically the same as used in FixedColumns - remove and copy heights */
+		/* Remove unneeded cells */
 		$('tbody tr', nTable).each( function (k) {
-			$('td:lt('+iCols-1+')', this).remove();
-			
-			/* Can we use some kind of object detection here?! This is very nasty - damn browsers */
-			if ( $.browser.mozilla || $.browser.opera )
-			{
-				$('td', this).height( $('tbody tr:eq('+k+')', that.dom.body).outerHeight() );
-			}
-			else
-			{
-				$('td', this).height( $('tbody tr:eq('+k+')', that.dom.body).outerHeight() - iBoxHack );
-			}
-			
-			if ( !bRubbishOldIE )
-			{
-				$('tbody tr:eq('+k+')', that.dom.body).height( $('tbody tr:eq('+k+')', that.dom.body).outerHeight() );		
-			}
+			$('td:lt('+(iCols-1)+')', this).remove();
 		} );
+		
+		this.fnEqualiseHeights( 'tbody', nBody.parentNode, nTable );
 		
 		var iWidth = jQuery('thead tr th:eq('+(iCols-1)+')', s.nTable).outerWidth();
 		nTable.style.width = iWidth+"px";
 		oCache.nWrapper.style.width = iWidth+"px";
+	},
+	
+	
+	/**
+	 * Equalise the heights of the rows in a given table node in a cross browser way. Note that this
+	 * is more or less lifted as is from FixedColumns
+	 *  @method  fnEqualiseHeights
+	 *  @returns void
+	 *  @param   {string} parent Node type - thead, tbody or tfoot
+	 *  @param   {element} original Original node to take the heights from
+	 *  @param   {element} clone Copy the heights to
+	 *  @private
+	 */
+	"fnEqualiseHeights": function ( parent, original, clone )
+	{
+		var that = this,
+			jqBoxHack = $(parent+' tr:eq(0)', original).children(':eq(0)'),
+			iBoxHack = jqBoxHack.outerHeight() - jqBoxHack.height(),
+			bRubbishOldIE = ($.browser.msie && ($.browser.version == "6.0" || $.browser.version == "7.0"));
+		
+		/* Remove cells which are not needed and copy the height from the original table */
+		$(parent+' tr', clone).each( function (k) {
+			/* Can we use some kind of object detection here?! This is very nasty - damn browsers */
+			if ( $.browser.mozilla || $.browser.opera )
+			{
+				$(this).children().height( $(parent+' tr:eq('+k+')', original).outerHeight() );
+			}
+			else
+			{
+				$(this).children().height( $(parent+' tr:eq('+k+')', original).outerHeight() - iBoxHack );
+			}
+			
+			if ( !bRubbishOldIE )
+			{
+				$(parent+' tr:eq('+k+')', original).height( $(parent+' tr:eq('+k+')', original).outerHeight() );		
+			}
+		} );
 	}
 };
 
