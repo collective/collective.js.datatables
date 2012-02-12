@@ -16,9 +16,9 @@ Changelog
 1.8.0.1 (2011-08-08)
 --------------------
 
-- Applied commit 547af3f4987d6194438d from github.com/DataTables/TableTools.git that fixes TableTools when using server-side processing.
+- Applied commit 547af3f4987d6194438d from github.com/DataTables/TableTools.git
+  that fixes TableTools when using server-side processing.
   [zupo]
-
 
 1.8.0 (2011-06-18)
 ------------------
@@ -40,16 +40,16 @@ Changelog
 1.7.4.3 (2010-11-16)
 --------------------
 
-- Fix packaging issue
+- Fix packaging issue.
   [esteele]
 
 1.7.4.2 (2010-11-09)
 --------------------
 
-- Add compatibility with old version from esteele
+- Add compatibility with old version from esteele.
   [toutpt]
 
 1.7.4.1 (2010-11-09)
 --------------------
 
-- Initial release
+- Initial release.
