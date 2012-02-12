@@ -1,6 +1,15 @@
 Changelog
 =========
 
+1.9.1 (2012-02-12)
+------------------
+
+- Add a missing trailing newline in README.
+  [zupo]
+
+- Also increase version number in README.
+  [zupo]
+
 1.9 (2012-02-12)
 ----------------
 
