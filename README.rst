@@ -1,7 +1,7 @@
 Introduction
 ============
 
-DataTables_ is a plug-in for the jQuery_ Javascript library. 
+DataTables_ is a plug-in for the jQuery_ Javascript library.
 It is a highly flexible tool, based upon the principle of progressive
 enhancement, which will add advanced interaction controls to any HTML table.
 
@@ -76,3 +76,4 @@ Contributors
 .. _DataTables: http://www.datatables.net/download
 .. _github: https://github.com/DataTables
 .. _jQuery: http://jquery.com
+
