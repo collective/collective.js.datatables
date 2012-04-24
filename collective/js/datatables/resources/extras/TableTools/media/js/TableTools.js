@@ -1,6 +1,6 @@
 /*
  * File:        TableTools.js
- * Version:     2.0.2
+ * Version:     2.0.3
  * Description: Tools and buttons for DataTables
  * Author:      Allan Jardine (www.sprymedia.co.uk)
  * Language:    Javascript
@@ -531,11 +531,11 @@ TableTools.prototype = {
 	 */
 	"fnResizeButtons": function ()
 	{
-		for ( var cli in ZeroClipboard.clients )
+		for ( var cli in ZeroClipboard_TableTools.clients )
 		{
 			if ( cli )
 			{
-				var client = ZeroClipboard.clients[cli];
+				var client = ZeroClipboard_TableTools.clients[cli];
 				if ( typeof client.domElement != 'undefined' &&
 					 client.domElement.parentNode == this.dom.container )
 				{
@@ -553,11 +553,11 @@ TableTools.prototype = {
 	 */
 	"fnResizeRequired": function ()
 	{
-		for ( var cli in ZeroClipboard.clients )
+		for ( var cli in ZeroClipboard_TableTools.clients )
 		{
 			if ( cli )
 			{
-				var client = ZeroClipboard.clients[cli];
+				var client = ZeroClipboard_TableTools.clients[cli];
 				if ( typeof client.domElement != 'undefined' &&
 					 client.domElement.parentNode == this.dom.container &&
 					 client.sized === false )
@@ -636,9 +636,9 @@ TableTools.prototype = {
 		
 		/* Flash file location */
 		this.s.swfPath = this.s.custom.sSwfPath;
-		if ( typeof ZeroClipboard != 'undefined' )
+		if ( typeof ZeroClipboard_TableTools != 'undefined' )
 		{
-			ZeroClipboard.moviePath = this.s.swfPath;
+			ZeroClipboard_TableTools.moviePath = this.s.swfPath;
 		}
 		
 		/* Table row selecting */
@@ -693,6 +693,10 @@ TableTools.prototype = {
 				buttonDef.sButtonClass += " ui-button ui-state-default";
 				buttonDef.sButtonClassHover += " ui-state-hover";
 			}
+			else
+			{
+				buttonDef.sButtonClassHover += " DTTT_button_hover";
+			}
 			
 			wrapper.appendChild( this._fnCreateButton( buttonDef ) );
 		}
@@ -730,10 +734,10 @@ TableTools.prototype = {
 		else if ( oConfig.sAction == "collection" )
 		{
 			this._fnTextConfig( nButton, oConfig );
-				this._fnCollectionConfig( nButton, oConfig );
+			this._fnCollectionConfig( nButton, oConfig );
 		}
 		
-	  return nButton;
+		return nButton;
 	},
 	
 	
@@ -838,6 +842,7 @@ TableTools.prototype = {
 		nHidden.className = !this.s.dt.bJUI ? "DTTT_collection" :
 			"DTTT_collection ui-buttonset ui-buttonset-multi";
 		oConfig._collection = nHidden;
+		document.body.appendChild( nHidden );
 		
 		this._fnButtonDefinations( oConfig.aButtons, nHidden );
 	},
@@ -1264,7 +1269,7 @@ TableTools.prototype = {
 	"_fnFlashConfig": function ( nButton, oConfig )
 	{
 		var that = this;
-		var flash = new ZeroClipboard.Client();
+		var flash = new ZeroClipboard_TableTools.Client();
 		
 		if ( oConfig.fnInit !== null )
 		{
@@ -1493,11 +1498,10 @@ TableTools.prototype = {
 	"_fnGetDataTablesData": function ( oConfig )
 	{
 		var i, iLen, j, jLen;
-		var sData = '', sLoopData = '';
+		var aRow, aData=[], sLoopData='';
 		var dt = this.s.dt;
 		var regex = new RegExp(oConfig.sFieldBoundary, "g"); /* Do it here for speed */
 		var aColumnsInc = this._fnColumnTargets( oConfig.mColumns );
-		var sNewline = this._fnNewline( oConfig );
 		var bSelectedOnly = (typeof oConfig.bSelectedOnly != 'undefined') ? oConfig.bSelectedOnly : false;
 		
 		/*
@@ -1505,6 +1509,8 @@ TableTools.prototype = {
 		 */
 		if ( oConfig.bHeader )
 		{
+			aRow = [];
+			
 			for ( i=0, iLen=dt.aoColumns.length ; i<iLen ; i++ )
 			{
 				if ( aColumnsInc[i] )
@@ -1512,12 +1518,11 @@ TableTools.prototype = {
 					sLoopData = dt.aoColumns[i].sTitle.replace(/\n/g," ").replace( /<.*?>/g, "" ).replace(/^\s+|\s+$/g,"");
 					sLoopData = this._fnHtmlDecode( sLoopData );
 					
-					sData += this._fnBoundData( sLoopData, oConfig.sFieldBoundary, regex ) +
-					 	oConfig.sFieldSeperator;
+					aRow.push( this._fnBoundData( sLoopData, oConfig.sFieldBoundary, regex ) );
 				}
 			}
-			sData = sData.slice( 0, oConfig.sFieldSeperator.length*-1 );
-			sData += sNewline;
+
+			aData.push( aRow.join(oConfig.sFieldSeperator) );
 		}
 		
 		/*
@@ -1525,10 +1530,12 @@ TableTools.prototype = {
 		 */
 		for ( j=0, jLen=dt.aiDisplay.length ; j<jLen ; j++ )
 		{
-			if ( this.s.select.type == "none" ||
+			if ( this.s.select.type == "none" || !bSelectedOnly ||
 				   (bSelectedOnly && $(dt.aoData[ dt.aiDisplay[j] ].nTr).hasClass( this.s.select.selectedClass )) ||
 			     (bSelectedOnly && this.s.select.selected.length == 0) )
 			{
+				aRow = [];
+				
 				/* Columns */
 				for ( i=0, iLen=dt.aoColumns.length ; i<iLen ; i++ )
 				{
@@ -1559,23 +1566,21 @@ TableTools.prototype = {
 						sLoopData = this._fnHtmlDecode( sLoopData );
 						
 						/* Bound it and add it to the total data */
-						sData += this._fnBoundData( sLoopData, oConfig.sFieldBoundary, regex ) +
-						 	oConfig.sFieldSeperator;
+						aRow.push( this._fnBoundData( sLoopData, oConfig.sFieldBoundary, regex ) );
 					}
 				}
-				sData = sData.slice( 0, oConfig.sFieldSeperator.length*-1 );
-				sData += sNewline;
+
+				aData.push( aRow.join(oConfig.sFieldSeperator) );
 			}
 		}
-		
-		/* Remove the last new line */
-		sData.slice( 0, -1 );
 		
 		/*
 		 * Footer
 		 */
-		if ( oConfig.bFooter )
+		if ( oConfig.bFooter && dt.nTFoot !== null )
 		{
+			aRow = [];
+			
 			for ( i=0, iLen=dt.aoColumns.length ; i<iLen ; i++ )
 			{
 				if ( aColumnsInc[i] && dt.aoColumns[i].nTf !== null )
@@ -1583,16 +1588,15 @@ TableTools.prototype = {
 					sLoopData = dt.aoColumns[i].nTf.innerHTML.replace(/\n/g," ").replace( /<.*?>/g, "" );
 					sLoopData = this._fnHtmlDecode( sLoopData );
 					
-					sData += this._fnBoundData( sLoopData, oConfig.sFieldBoundary, regex ) +
-					 	oConfig.sFieldSeperator;
+					aRow.push( this._fnBoundData( sLoopData, oConfig.sFieldBoundary, regex ) );
 				}
 			}
-			sData = sData.slice( 0, oConfig.sFieldSeperator.length*-1 );
+			
+			aData.push( aRow.join(oConfig.sFieldSeperator) );
 		}
 		
-		/* No pointers here - this is a string copy :-) */
-		_sLastData = sData;
-		return sData;
+		_sLastData = aData.join( this._fnNewline(oConfig) );
+		return _sLastData;
 	},
 	
 	
@@ -2505,13 +2509,13 @@ TableTools.BUTTONS = {
  * @namespace TableTools default settings for initialisation
  */
 TableTools.DEFAULTS = {
-	"sSwfPath":		 "media/swf/copy_cvs_xls_pdf.swf",
-	"sRowSelect":	   "none",
-	"sSelectedClass":   "DTTT_selected",
-	"fnPreRowSelect":   null,
-	"fnRowSelected":	null,
-	"fnRowDeselected":  null,
-	"aButtons":		 [ "copy", "csv", "xls", "pdf", "print" ]
+	"sSwfPath":        "media/swf/copy_csv_xls_pdf.swf",
+	"sRowSelect":      "none",
+	"sSelectedClass":  "DTTT_selected",
+	"fnPreRowSelect":  null,
+	"fnRowSelected":   null,
+	"fnRowDeselected": null,
+	"aButtons":        [ "copy", "csv", "xls", "pdf", "print" ]
 };
 
 
@@ -2528,9 +2532,9 @@ TableTools.prototype.CLASS = "TableTools";
  * TableTools version
  *  @constant  VERSION
  *  @type	  String
- *  @default   2.0.2
+ *  @default   2.0.3.dev
  */
-TableTools.VERSION = "2.0.2";
+TableTools.VERSION = "2.0.3";
 TableTools.prototype.VERSION = TableTools.VERSION;
 
 

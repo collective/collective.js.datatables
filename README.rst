@@ -49,6 +49,37 @@ Key features of jquery.dataTables
 * Full support for Adobe AIR
 * Source available at github_
 
+Plugins
+=======
+
+This addon embed extras plugins:
+
+* AutoFill     1.1.2
+* ColReorder   1.0.5
+* ColVis       1.0.7
+* FixedColumns 2.0.2
+* FixedHeader  2.0.5
+* KeyTable     1.1.7
+* Scroller     1.0.1
+* TableTools   2.0.3
+
+How to use tabletools
+---------------------
+First include dependencies in your template, or register theses in 
+portal_javascripts::
+
+  <link rel="stylesheet" type="text/css" media="screen" href="++resource++jquery.datatables/media/css/jquery.dataTables.css">
+  <script type="text/javascript" src="++resource++jquery.datatables.js"></script>
+  <script type="text/javascript" src="++resource++jquery.datatables/extras/TableTools/media/js/ZeroClipboard.js"></script>
+  <script type="text/javascript" src="++resource++jquery.datatables/extras/TableTools/media/js/TableTools.js"></script>
+
+Next you can create your datatable::
+
+  var oTable = $('#mydatatable').dataTable({
+    "sDom": 'T<"clear">lfrtip',
+    "oTableTools": {"sSwfPath": "++resource++jquery.datatables/extras/TableTools/media/swf/copy_csv_xls_pdf.swf"}
+  });
+
 Credits
 =======
 
