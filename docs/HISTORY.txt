@@ -1,6 +1,15 @@
 Changelog
 =========
 
+1.9.2 (unreleased)
+------------------
+
+- Upgrade all plugins and add documentation about them
+  [toutpt]
+  
+- Upgrade jquery.datatables to 1.9.1
+  [toutpt]
+
 1.9.1 (2012-02-12)
 ------------------
 

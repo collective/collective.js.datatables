@@ -5,7 +5,7 @@ DataTables_ is a plug-in for the jQuery_ Javascript library.
 It is a highly flexible tool, based upon the principle of progressive
 enhancement, which will add advanced interaction controls to any HTML table.
 
-This version includes datatables 1.9 without the examples available in the
+This version includes datatables 1.9.1 without the examples available in the
 source distribution of the plugin. It is provided with an
 ``@@example.datatables`` view.
 
@@ -57,8 +57,8 @@ This addon embed extras plugins:
 * AutoFill     1.1.2
 * ColReorder   1.0.5
 * ColVis       1.0.7
-* FixedColumns 2.0.2
-* FixedHeader  2.0.5
+* FixedColumns 2.0.3
+* FixedHeader  2.0.6
 * KeyTable     1.1.7
 * Scroller     1.0.1
 * TableTools   2.0.3
