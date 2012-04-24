@@ -1,6 +1,6 @@
 /*
  * File:        FixedHeader.js
- * Version:     2.0.5
+ * Version:     2.0.6
  * Description: "Fix" a header at the top of the table, so it scrolls with the table
  * Author:      Allan Jardine (www.sprymedia.co.uk)
  * Created:     Wed 16 Sep 2009 19:46:30 BST
@@ -9,7 +9,7 @@
  * Project:     Just a little bit of fun - enjoy :-)
  * Contact:     www.sprymedia.co.uk/contact
  * 
- * Copyright 2009-2010 Allan Jardine, all rights reserved.
+ * Copyright 2009-2012 Allan Jardine, all rights reserved.
  *
  * This source file is free software, under either the GPL v2 license or a
  * BSD style license, available at:
@@ -64,6 +64,9 @@ var FixedHeader = function ( mTable, oInit ) {
 			"iTableRight": 0, /* note this is left+width, not actually "right" */
 			"iTableTop": 0,
 			"iTableBottom": 0 /* note this is top+height, not actually "bottom" */
+		},
+		"oOffset": {
+			"top": 0
 		},
 		"nTable": null,
 		"bUseAbsPos": false,
@@ -251,6 +254,10 @@ FixedHeader.prototype = {
 			if ( typeof oInit.zRight != 'undefined' ) {
 				s.oZIndexes.right = oInit.zRight;
 			}
+
+			if ( typeof oInit.offsetTop != 'undefined' ) {
+				s.oOffset.top = oInit.offsetTop;
+			}
 		}
 		
 		/* Detect browsers which have poor position:fixed support so we can use absolute positions.
@@ -364,7 +371,7 @@ FixedHeader.prototype = {
 		var i = n[side];
 		while ( n = n.parentNode )
 		{
-			if ( n.nodeName != 'HTML' && n.nodeName != 'BODY' )
+			if ( n.nodeName == 'HTML' || n.nodeName == 'BODY' )
 			{
 				break;
 			}
@@ -584,16 +591,21 @@ FixedHeader.prototype = {
 			oWin = FixedHeader.oWin,
 			oDoc = FixedHeader.oDoc,
 			nTable = oCache.nWrapper,
-			iTbodyHeight = s.nTable.getElementsByTagName('tbody')[0].offsetHeight;
-		
-		if ( oMes.iTableTop > oWin.iScrollTop )
+			iTbodyHeight = 0,
+			anTbodies = s.nTable.getElementsByTagName('tbody');
+
+		for (var i = 0; i < anTbodies.length; ++i) {
+			iTbodyHeight += anTbodies[i].offsetHeight;
+		}
+
+		if ( oMes.iTableTop > oWin.iScrollTop + s.oOffset.top )
 		{
 			/* Above the table */
 			this._fnUpdateCache( oCache, 'sPosition', "absolute", 'position', nTable.style );
 			this._fnUpdateCache( oCache, 'sTop', oMes.iTableTop+"px", 'top', nTable.style );
 			this._fnUpdateCache( oCache, 'sLeft', oMes.iTableLeft+"px", 'left', nTable.style );
 		}
-		else if ( oWin.iScrollTop > oMes.iTableTop+iTbodyHeight )
+		else if ( oWin.iScrollTop + s.oOffset.top > oMes.iTableTop+iTbodyHeight )
 		{
 			/* At the bottom of the table */
 			this._fnUpdateCache( oCache, 'sPosition', "absolute", 'position', nTable.style );
@@ -612,7 +624,7 @@ FixedHeader.prototype = {
 			else
 			{
 				this._fnUpdateCache( oCache, 'sPosition', 'fixed', 'position', nTable.style );
-				this._fnUpdateCache( oCache, 'sTop', "0px", 'top', nTable.style );
+				this._fnUpdateCache( oCache, 'sTop', s.oOffset.top+"px", 'top', nTable.style );
 				this._fnUpdateCache( oCache, 'sLeft', (oMes.iTableLeft-oWin.iScrollLeft)+"px", 'left', nTable.style );
 			}
 		}
@@ -716,7 +728,7 @@ FixedHeader.prototype = {
 	 * Function: _fnCloneTLeft
 	 * Purpose:  Clone the left column
 	 * Returns:  -
-	 * Inputs:   object:oCache - the cahced values for this fixed element
+	 * Inputs:   object:oCache - the cached values for this fixed element
 	 */
 	_fnCloneTLeft: function ( oCache )
 	{
@@ -740,10 +752,15 @@ FixedHeader.prototype = {
 			nTable.appendChild( jQuery("tfoot", s.nTable).clone(true)[0] );
 		}
 		
-		jQuery('thead tr th:gt(0)', nTable).remove();
-		jQuery('tfoot tr th:gt(0)', nTable).remove();
-		
 		/* Remove unneeded cells */
+		$('thead tr', nTable).each( function (k) {
+			$('th:gt(0)', this).remove();
+		} );
+
+		$('tfoot tr', nTable).each( function (k) {
+			$('th:gt(0)', this).remove();
+		} );
+
 		$('tbody tr', nTable).each( function (k) {
 			$('td:gt(0)', this).remove();
 		} );
@@ -897,6 +914,10 @@ FixedHeader.fnMeasure = function ()
 	oWin.iScrollRight = oDoc.iWidth - oWin.iScrollLeft - oWin.iWidth;
 	oWin.iScrollBottom = oDoc.iHeight - oWin.iScrollTop - oWin.iHeight;
 };
+
+
+FixedHeader.VERSION = "2.0.6";
+FixedHeader.prototype.VERSION = FixedHeader.VERSION;
 
 	
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

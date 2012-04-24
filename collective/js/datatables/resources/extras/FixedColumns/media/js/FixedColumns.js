@@ -2,7 +2,7 @@
  * @summary     FixedColumns
  * @description Freeze columns in place on a scrolling DataTable
  * @file        FixedColumns.js
- * @version     2.0.2
+ * @version     2.0.3
  * @author      Allan Jardine (www.sprymedia.co.uk)
  * @license     GPL v2 or BSD 3 point style
  * @contact     www.sprymedia.co.uk/contact
@@ -41,7 +41,7 @@ var FixedColumns;
  *  @param {object} [oInit={}] Configuration object for FixedColumns. Options are defined by {@link FixedColumns.defaults}
  * 
  *  @requires jQuery 1.3+
- *  @requires DataTables 1.8.0.dev+
+ *  @requires DataTables 1.8.0+
  * 
  *  @example
  *  	var oTable = $('#example').dataTable( {
@@ -741,7 +741,7 @@ FixedColumns.prototype = {
 	"_fnClone": function ( oClone, oGrid, aiColumns, bAll )
 	{
 		var that = this,
-			i, iLen, jq, nTarget, iColumn, nClone, iIndex;
+			i, iLen, j, jLen, jq, nTarget, iColumn, nClone, iIndex;
 
 		/* 
 		 * Header
@@ -775,14 +775,27 @@ FixedColumns.prototype = {
 		}
 		else
 		{
-			for ( iIndex=0 ; iIndex<aiColumns.length ; iIndex++ )
+			/* To ensure that we copy cell classes exactly, regardless of colspan, multiple rows
+			 * etc, we make a copy of the header from the DataTable again, but don't insert the 
+			 * cloned cells, just copy the classes across. To get the matching layout for the
+			 * fixed component, we use the DataTables _fnDetectHeader method, allowing 1:1 mapping
+			 */
+			var aoCloneLayout = this._fnCopyLayout( this.s.dt.aoHeader, aiColumns );
+			var aoCurrHeader=[];
+
+			this.s.dt.oApi._fnDetectHeader( aoCurrHeader, $('>thead', oClone.header)[0] );
+
+			for ( i=0, iLen=aoCloneLayout.length ; i<iLen ; i++ )
 			{
-				$('>thead th:eq('+iIndex+')', oClone.header)[0].className =
-					this.s.dt.aoColumns[ aiColumns[iIndex] ].nTh.className;
-				
-				$('>thead th:eq('+iIndex+') span.DataTables_sort_icon', oClone.header).each( function (i) {
-					this.className = $('span.DataTables_sort_icon', that.s.dt.aoColumns[ aiColumns[iIndex] ].nTh)[i].className;
-				} );
+				for ( j=0, jLen=aoCloneLayout[i].length ; j<jLen ; j++ )
+				{
+					aoCurrHeader[i][j].cell.className = aoCloneLayout[i][j].cell.className;
+
+					// If jQuery UI theming is used we need to copy those elements as well
+					$('span.DataTables_sort_icon', aoCurrHeader[i][j].cell).each( function () {
+						this.className = $('span.DataTables_sort_icon', aoCloneLayout[i][j].cell)[0].className;
+					} );
+				}
 			}
 		}
 		this._fnEqualiseHeights( 'thead', this.dom.header, oClone.header );
@@ -812,12 +825,36 @@ FixedColumns.prototype = {
 		}
 		
 		$('>thead>tr', oClone.body).empty();
-		$('>tfoot', oClone.body).empty();
+		$('>tfoot', oClone.body).remove();
 		
 		var nBody = $('tbody', oClone.body)[0];
 		$(nBody).empty();
 		if ( this.s.dt.aiDisplay.length > 0 )
 		{
+			/* Copy the DataTables' header elements to force the column width in exactly the
+			 * same way that DataTables does it - have the header element, apply the width and
+			 * colapse it down
+			 */
+			var nInnerThead = $('>thead>tr', oClone.body)[0];
+			for ( iIndex=0 ; iIndex<aiColumns.length ; iIndex++ )
+			{
+				iColumn = aiColumns[iIndex];
+
+				nClone = this.s.dt.aoColumns[iColumn].nTh;
+				nClone.innerHTML = "";
+
+				oStyle = nClone.style;
+				oStyle.paddingTop = "0";
+				oStyle.paddingBottom = "0";
+				oStyle.borderTopWidth = "0";
+				oStyle.borderBottomWidth = "0";
+				oStyle.height = 0;
+				oStyle.width = that.s.aiWidths[iColumn]+"px";
+
+				nInnerThead.appendChild( nClone );
+			}
+
+			/* Add in the tbody elements, cloning form the master table */
 			$('>tbody>tr', that.dom.body).each( function (z) {
 				var n = this.cloneNode(false);
 				var i = that.s.dt.oFeatures.bServerSide===false ?
@@ -828,7 +865,6 @@ FixedColumns.prototype = {
 					if ( typeof that.s.dt.aoData[i]._anHidden[iColumn] != 'undefined' )
 					{
 						nClone = $(that.s.dt.aoData[i]._anHidden[iColumn]).clone(true)[0];
-						nClone.style.width = that.s.aiWidths[iColumn]+"px";
 						n.appendChild( nClone );
 					}
 				}
@@ -879,32 +915,37 @@ FixedColumns.prototype = {
 			}
 			else
 			{
-				for ( iIndex=0 ; iIndex<aiColumns.length ; iIndex++ )
+				var aoCloneLayout = this._fnCopyLayout( this.s.dt.aoFooter, aiColumns );
+				var aoCurrFooter=[];
+
+				this.s.dt.oApi._fnDetectHeader( aoCurrFooter, $('>tfoot', oClone.footer)[0] );
+
+				for ( i=0, iLen=aoCloneLayout.length ; i<iLen ; i++ )
 				{
-					$('>tfoot th:eq('+iIndex+')', oClone.footer)[0].className =
-						this.s.dt.aoColumns[ aiColumns[iIndex] ].nTf.className;
+					for ( j=0, jLen=aoCloneLayout[i].length ; j<jLen ; j++ )
+					{
+						aoCurrFooter[i][j].cell.className = aoCloneLayout[i][j].cell.className;
+					}
 				}
 			}
 			this._fnEqualiseHeights( 'tfoot', this.dom.footer, oClone.footer );
 		}
 
 		/* Equalise the column widths between the header footer and body - body get's priority */
-		var jqBody = $('>tbody>tr:eq(0)', oClone.body);
-		var jqHead = $('>thead>tr:eq(0)', oClone.header);
-		if ( this.s.dt.nTFoot !== null )
-		{
-			var jqFoot = $('>tfoot>tr:eq(0)', oClone.footer);
-		}
-
-		jqBody.children().each( function (i) {
-			var iWidth = $(this).width();
-
-			jqHead.children(':eq('+i+')').width( iWidth );
-			if ( that.s.dt.nTFoot !== null )
-			{
-				jqFoot.children(':eq('+i+')').width( iWidth );
-			}
+		var anUnique = this.s.dt.oApi._fnGetUniqueThs( this.s.dt, $('>thead', oClone.header)[0] );
+		$(anUnique).each( function (i) {
+			iColumn = aiColumns[i];
+			this.style.width = that.s.aiWidths[iColumn]+"px";
 		} );
+
+		if ( that.s.dt.nTFoot !== null )
+		{
+			anUnique = this.s.dt.oApi._fnGetUniqueThs( this.s.dt, $('>tfoot', oClone.footer)[0] );
+			$(anUnique).each( function (i) {
+				iColumn = aiColumns[i];
+				this.style.width = that.s.aiWidths[iColumn]+"px";
+			} );
+		}
 	},
 	
 	
@@ -1163,7 +1204,7 @@ FixedColumns.prototype.CLASS = "FixedColumns";
  *  @default   See code
  *  @static
  */
-FixedColumns.VERSION = "2.0.2";
+FixedColumns.VERSION = "2.0.3";
 
 
 

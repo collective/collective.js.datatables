@@ -2,7 +2,7 @@
  * @summary     Scroller
  * @description Virtual rendering for DataTables
  * @file        Scroller.js
- * @version     1.0.1
+ * @version     1.0.2
  * @author      Allan Jardine (www.sprymedia.co.uk)
  * @license     GPL v2 or BSD 3 point style
  * @contact     www.sprymedia.co.uk/contact
@@ -29,7 +29,7 @@
  * forced to the height it would be for the full table display using an extra 
  * element. 
  * 
- * Note that rows in the table MUST all be the same hight. Information in a cell
+ * Note that rows in the table MUST all be the same height. Information in a cell
  * which expands on to multiple lines will cause some odd behaviour in the scrolling.
  *
  * Scroller is initialised by simply including the letter 'S' in the sDom for the
@@ -373,7 +373,7 @@ Scroller.prototype = {
 		{
 			this.s.rowHeight = false;
 		}
-		this.fnMeasure();
+		this.fnMeasure( false );
 
 		/* Scrolling callback to see if a page change is needed */
 		$(this.dom.scroller).scroll( function () {
@@ -383,7 +383,9 @@ Scroller.prototype = {
 		/* Update the scroller when the DataTable is redrawn */
 		this.s.dt.aoDrawCallback.push( {
 			"fn": function () {
-				that._fnDrawCallback.call( that );
+				if ( that.s.dt.bInitialised ) {
+					that._fnDrawCallback.call( that );
+				}
 			},
 			"sName": "Scroller"
 		} );
@@ -768,8 +770,8 @@ Scroller.prototype.CLASS = "Scroller";
  *  @default   See code
  *  @static
  */
-Scroller.VERSION = "1.0.1";
-Scroller.prototype.CLASS = Scroller.VERSION;
+Scroller.VERSION = "1.0.2";
+Scroller.prototype.VERSION = Scroller.VERSION;
 
 
 
