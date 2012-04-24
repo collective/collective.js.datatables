@@ -32,7 +32,7 @@
     description=""
     source="1900"
     destination="1901"
-    handler=".upgrade_19x.upgrade_19001"
+    handler=".upgrade_19x.upgrade_1901"
     profile="collective.js.datatables:default"/>
 
 </configure>
