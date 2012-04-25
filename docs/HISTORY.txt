@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.9.2.1 (unreleased)
+1.9.2.1 (2012-04-25)
 --------------------
 
 - register css of datatable in cssregistry. [toutpt]
