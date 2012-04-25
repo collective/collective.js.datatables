@@ -16,9 +16,6 @@ A genericsetup profile is provided to add ``jquery.dataTables`` to
 ``portal_javascript`` in a non-minified version with compression option set
 to *safe*.
 
-The example view works without Plone integration (just by calling
-resources).
-
 Key features of jquery.dataTables
 =================================
 
