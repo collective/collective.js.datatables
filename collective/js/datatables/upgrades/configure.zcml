@@ -35,4 +35,12 @@
     handler=".upgrade_19x.upgrade_1901"
     profile="collective.js.datatables:default"/>
 
+  <gs:upgradeStep
+    title="Register the provided dataTable.css"
+    description=""
+    source="1901"
+    destination="1902"
+    handler=".upgrade_19x.upgrade_1902"
+    profile="collective.js.datatables:default"/>
+
 </configure>

@@ -4,7 +4,8 @@ Changelog
 1.9.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- register css of datatable in cssregistry. [toutpt]
+- move example in splited module [toutpt]
 
 
 1.9.2 (2012-04-24)

@@ -37,14 +37,6 @@
       directory="resources/media"
       />
 
-  <browser:page
-    name="example.datatables"
-    for="*"
-    class=".example.Example"
-    template="example.pt"
-    permission="zope2.View"
-    />
-
   <include package=".upgrades"/>
 
 </configure>
