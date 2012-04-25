@@ -8,10 +8,14 @@ class TestSetup(base.IntegrationTestCase):
     """
 
     def test_jsregistry(self):
-        pass
+        registry = self.portal.portal_javascripts
+        datatable = registry.getResource("++resource++jquery.datatables.js")
+        self.assertTrue(datatable is not None)
 
     def test_cssregistry(self):
-        pass
+        registry = self.portal.portal_css
+        datatable = registry.getResource("++resource++jquery.datatables/media/css/jquery.dataTables.css")
+        self.assertTrue(datatable is not None)
 
 class TestUninstall(base.IntegrationTestCase):
     """Test if the addon uninstall well"""
@@ -22,10 +26,14 @@ class TestUninstall(base.IntegrationTestCase):
         qi.uninstallProducts(products=['collective.js.datatables'])
 
     def test_jsregistry(self):
-        pass
+        registry = self.portal.portal_javascripts
+        datatable = registry.getResource("++resource++jquery.datatables.js")
+        self.assertTrue(datatable is None)
 
     def test_cssregistry(self):
-        pass
+        registry = self.portal.portal_css
+        datatable = registry.getResource("++resource++jquery.datatables/media/css/jquery.dataTables.css")
+        self.assertTrue(datatable is None)
 
 def test_suite():
     return unittest.defaultTestLoader.loadTestsFromName(__name__)
