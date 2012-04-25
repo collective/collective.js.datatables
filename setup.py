@@ -30,6 +30,9 @@ setup(name='collective.js.datatables',
           'setuptools',
           # -*- Extra requirements: -*-
       ],
+      extras_require = dict(
+          test=['plone.app.testing'],
+      ),
       entry_points="""
       # -*- Entry points: -*-
 
