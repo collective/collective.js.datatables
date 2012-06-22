@@ -1,6 +1,6 @@
 /*
  * File:        ColReorder.js
- * Version:     1.0.5
+ * Version:     1.0.6
  * CVS:         $Id$
  * Description: Controls for column visiblity in DataTables
  * Author:      Allan Jardine (www.sprymedia.co.uk)
@@ -274,13 +274,12 @@ $.fn.dataTableExt.oApi.fnColReorder = function ( oSettings, iFrom, iTo )
 	}
 	
 	
-	/*
-	 * Any extra operations for the other plug-ins
-	 */
-	if ( typeof ColVis != 'undefined' )
-	{
-		ColVis.fnRebuild( oSettings.oInstance );
-	}
+	/* Fire an event so other plug-ins can update */
+	$(oSettings.oInstance).trigger( 'column-reorder', [ oSettings, {
+		"iFrom": iFrom,
+		"iTo": iTo,
+		"aiInvertMapping": aiInvertMapping
+	} ] );
 	
 	if ( typeof oSettings.oInstance._oPluginFixedHeader != 'undefined' )
 	{
@@ -527,7 +526,7 @@ ColReorder.prototype = {
 	{
 		if ( a.length != this.s.dt.aoColumns.length )
 		{
-			this.s.dt.oInstance.oApi._fnLog( oDTSettings, 1, "ColReorder - array reorder does not "+
+			this.s.dt.oInstance.oApi._fnLog( this.s.dt, 1, "ColReorder - array reorder does not "+
 			 	"match known number of columns. Skipping." );
 			return;
 		}
@@ -611,8 +610,8 @@ ColReorder.prototype = {
 	{
 		var that = this;
 		$(nTh).bind( 'mousedown.ColReorder', function (e) {
+			e.preventDefault();
 			that._fnMouseDown.call( that, e, nTh );
-			return false;
 		} );
 	},
 	
@@ -914,7 +913,7 @@ ColReorder.prototype.CLASS = "ColReorder";
  *  @type      String
  *  @default   As code
  */
-ColReorder.VERSION = "1.0.5";
+ColReorder.VERSION = "1.0.6";
 ColReorder.prototype.VERSION = ColReorder.VERSION;
 
 

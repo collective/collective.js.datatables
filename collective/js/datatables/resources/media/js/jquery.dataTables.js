@@ -1,7 +1,7 @@
 /**
  * @summary     DataTables
  * @description Paginate, search and sort HTML tables
- * @version     1.9.1
+ * @version     1.9.2
  * @file        jquery.dataTables.js
  * @author      Allan Jardine (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
@@ -865,11 +865,13 @@
 				return function (data, val) {
 					for ( var i=0, iLen=a.length-1 ; i<iLen ; i++ )
 					{
-						data = data[ a[i] ];
-						if ( data === undefined )
+						// If the nested object doesn't currently exist - since we are
+						// trying to set the value - create it
+						if ( data[ a[i] ] === undefined )
 						{
-							return;
+							data[ a[i] ] = {};
 						}
+						data = data[ a[i] ];
 					}
 					data[ a[a.length-1] ] = val;
 				};
@@ -967,7 +969,6 @@
 				"mDataProp":   oCol.mDataProp
 			}, _fnGetCellData(oSettings, iRow, iCol, 'display') );
 		}
-		
 		
 		/**
 		 * Create a new TR element (and it's TD children) for a row
@@ -1270,12 +1271,6 @@
 		 */
 		function _fnDraw( oSettings )
 		{
-			var i, iLen, n;
-			var anRows = [];
-			var iRowCount = 0;
-			var iStripes = oSettings.asStripeClasses.length;
-			var iOpenRows = oSettings.aoOpenRows.length;
-			
 			/* Provide a pre-callback function which can be used to cancel the draw is false is returned */
 			var aPreDraw = _fnCallbackFire( oSettings, 'aoPreDrawCallback', 'preDraw', [oSettings] );
 			if ( $.inArray( false, aPreDraw ) !== -1 )
@@ -1283,6 +1278,12 @@
 				_fnProcessingDisplay( oSettings, false );
 				return;
 			}
+			
+			var i, iLen, n;
+			var anRows = [];
+			var iRowCount = 0;
+			var iStripes = oSettings.asStripeClasses.length;
+			var iOpenRows = oSettings.aoOpenRows.length;
 			
 			oSettings.bDrawing = true;
 			
@@ -1542,11 +1543,11 @@
 						/* Replace jQuery UI constants */
 						if ( sAttr == "H" )
 						{
-							sAttr = "fg-toolbar ui-toolbar ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix";
+							sAttr = oSettings.oClasses.sJUIHeader;
 						}
 						else if ( sAttr == "F" )
 						{
-							sAttr = "fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix";
+							sAttr = oSettings.oClasses.sJUIFooter;
 						}
 						
 						/* The attribute can be in the format of "#id.class", "#id" or "class" This logic
@@ -2341,7 +2342,7 @@
 		 */
 		function _fnEscapeRegex ( sVal )
 		{
-			var acEscape = [ '/', '.', '*', '+', '?', '|', '(', ')', '[', ']', '{', '}', '\\', '$', '^' ];
+			var acEscape = [ '/', '.', '*', '+', '?', '|', '(', ')', '[', ']', '{', '}', '\\', '$', '^', '-' ];
 			var reReplace = new RegExp( '(\\' + acEscape.join('|\\') + ')', 'g' );
 			return sVal.replace(reReplace, '\\$1');
 		}
@@ -4655,7 +4656,7 @@
 		 * same effect as a click, if the element has focus.
 		 *  @param {element} n Element to bind the action to
 		 *  @param {object} oData Data object to pass to the triggered function
-		 *  @param {function) fn Callback function for when the event is triggered
+		 *  @param {function} fn Callback function for when the event is triggered
 		 *  @memberof DataTable#oApi
 		 */
 		function _fnBindAction( n, oData, fn )
@@ -4682,7 +4683,7 @@
 		 *  @param {object} oSettings dataTables settings object
 		 *  @param {string} sStore Name of the array storeage for the callbacks in oSettings
 		 *  @param {function} fn Function to be called back
-		 *  @param {string) sName Identifying name for the callback (i.e. a label)
+		 *  @param {string} sName Identifying name for the callback (i.e. a label)
 		 *  @memberof DataTable#oApi
 		 */
 		function _fnCallbackReg( oSettings, sStore, fn, sName )
@@ -4705,7 +4706,7 @@
 		 *  @param {string} sStore Name of the array storeage for the callbacks in oSettings
 		 *  @param {string} sTrigger Name of the jQuery custom event to trigger. If null no trigger
 		 *    is fired
-		 *  @param {array) aArgs Array of arguments to pass to the callback function / trigger
+		 *  @param {array} aArgs Array of arguments to pass to the callback function / trigger
 		 *  @memberof DataTable#oApi
 		 */
 		function _fnCallbackFire( oSettings, sStore, sTrigger, aArgs )
@@ -4818,8 +4819,11 @@
 		 */
 		this.$ = function ( sSelector, oOpts )
 		{
-			var i, iLen, a = [];
+			var i, iLen, a = [], tr;
 			var oSettings = _fnSettingsFromNode( this[DataTable.ext.iApiIndex] );
+			var aoData = oSettings.aoData;
+			var aiDisplay = oSettings.aiDisplay;
+			var aiDisplayMaster = oSettings.aiDisplayMaster;
 		
 			if ( !oOpts )
 			{
@@ -4838,37 +4842,54 @@
 			{
 				for ( i=oSettings._iDisplayStart, iLen=oSettings.fnDisplayEnd() ; i<iLen ; i++ )
 				{
-					a.push( oSettings.aoData[ oSettings.aiDisplay[i] ].nTr );
+					tr = aoData[ aiDisplay[i] ].nTr;
+					if ( tr )
+					{
+						a.push( tr );
+					}
 				}
 			}
 			else if ( oOpts.order == "current" && oOpts.filter == "none" )
 			{
-				for ( i=0, iLen=oSettings.aiDisplayMaster.length ; i<iLen ; i++ )
+				for ( i=0, iLen=aiDisplayMaster.length ; i<iLen ; i++ )
 				{
-					a.push( oSettings.aoData[ oSettings.aiDisplayMaster[i] ].nTr );
+					tr = aoData[ aiDisplayMaster[i] ].nTr;
+					if ( tr )
+					{
+						a.push( tr );
+					}
 				}
 			}
 			else if ( oOpts.order == "current" && oOpts.filter == "applied" )
 			{
-				for ( i=0, iLen=oSettings.aiDisplay.length ; i<iLen ; i++ )
+				for ( i=0, iLen=aiDisplay.length ; i<iLen ; i++ )
 				{
-					a.push( oSettings.aoData[ oSettings.aiDisplay[i] ].nTr );
+					tr = aoData[ aiDisplay[i] ].nTr;
+					if ( tr )
+					{
+						a.push( tr );
+					}
 				}
 			}
 			else if ( oOpts.order == "original" && oOpts.filter == "none" )
 			{
-				for ( i=0, iLen=oSettings.aoData.length ; i<iLen ; i++ )
+				for ( i=0, iLen=aoData.length ; i<iLen ; i++ )
 				{
-					a.push( oSettings.aoData[ i ].nTr );
+					tr = aoData[ i ].nTr ;
+					if ( tr )
+					{
+						a.push( tr );
+					}
 				}
 			}
 			else if ( oOpts.order == "original" && oOpts.filter == "applied" )
 			{
-				for ( i=0, iLen=oSettings.aoData.length ; i<iLen ; i++ )
+				for ( i=0, iLen=aoData.length ; i<iLen ; i++ )
 				{
-					if ( $.inArray( i, oSettings.aiDisplay ) !== -1 )
+					tr = aoData[ i ].nTr;
+					if ( $.inArray( i, aiDisplay ) !== -1 && tr )
 					{
-						a.push( oSettings.aoData[ i ].nTr );
+						a.push( tr );
 					}
 				}
 			}
@@ -5195,8 +5216,8 @@
 				fnCallBack.call( this, oSettings, oData );
 			}
 			
-			/* Check for an 'overflow' they case for dislaying the table */
-			if ( oSettings._iDisplayStart >= oSettings.aiDisplay.length )
+			/* Check for an 'overflow' they case for displaying the table */
+			if ( oSettings._iDisplayStart >= oSettings.fnRecordsDisplay() )
 			{
 				oSettings._iDisplayStart -= oSettings._iDisplayLength;
 				if ( oSettings._iDisplayStart < 0 )
@@ -6715,7 +6736,7 @@
 	 *  @type string
 	 *  @default Version number
 	 */
-	DataTable.version = "1.9.1";
+	DataTable.version = "1.9.2";
 
 	/**
 	 * Private data store, containing all of the settings objects that are created for the
@@ -7484,7 +7505,7 @@
 		 *  @param {object} o Object with the following parameters:
 		 *  @param {int}    o.iDataRow The row in aoData
 		 *  @param {int}    o.iDataColumn The column in question
-		 *  @param {array   o.aData The data for the row in question
+		 *  @param {array}  o.aData The data for the row in question
 		 *  @param {object} o.oSettings The settings object for this DataTables instance
 		 *  @returns {string} The string you which to use in the display
 		 *  @default null
@@ -8520,8 +8541,8 @@
 		 *        "bProcessing": true,
 		 *        "bServerSide": true,
 		 *        "sAjaxSource": "xhr.php",
-		 *        "fnServerData": function ( sSource, aoData, fnCallback ) {
-		 *          $.ajax( {
+		 *        "fnServerData": function ( sSource, aoData, fnCallback, oSettings ) {
+		 *          oSettings.jqXHR = $.ajax( {
 		 *            "dataType": 'json', 
 		 *            "type": "POST", 
 		 *            "url": sSource, 
@@ -8599,7 +8620,7 @@
 		 *    $(document).ready(function() {
 		 *      $('#example').dataTable( {
 		 *        "bStateSave": true,
-		 *        "fnStateLoad": function (oSettings, oData) {
+		 *        "fnStateLoad": function (oSettings) {
 		 *          var o;
 		 *          
 		 *          // Send an Ajax request to the server to get the data. Note that
@@ -9451,7 +9472,7 @@
 		 *  @example
 		 *    $(document).ready(function() {
 		 *      $('#example').dataTable( {
-		 *        "sDom": '&lt;"top"i&gt;rt&lt;"bottom"flp&gt;&lt;"clear"&lgt;'
+		 *        "sDom": '&lt;"top"i&gt;rt&lt;"bottom"flp&gt;&lt;"clear"&gt;'
 		 *      } );
 		 *    } );
 		 */
@@ -11238,7 +11259,9 @@
 		"sScrollFootInner": "dataTables_scrollFootInner",
 		
 		/* Misc */
-		"sFooterTH": ""
+		"sFooterTH": "",
+		"sJUIHeader": "",
+		"sJUIFooter": ""
 	} );
 	
 	
@@ -11282,7 +11305,9 @@
 		"sScrollFoot": "dataTables_scrollFoot ui-state-default",
 		
 		/* Misc */
-		"sFooterTH": "ui-state-default"
+		"sFooterTH": "ui-state-default",
+		"sJUIHeader": "fg-toolbar ui-toolbar ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix",
+		"sJUIFooter": "fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix"
 	} );
 	
 	
