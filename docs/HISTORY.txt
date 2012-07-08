@@ -6,6 +6,7 @@ Changelog
 
 - Add locales folder with french translations [toutpt]
 - Add collective.js.datatables.translation view to use translations [toutpt]
+- Add italian translations [keul]
 
 
 1.9.2.2 (2012-06-22)

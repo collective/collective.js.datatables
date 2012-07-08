@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-07-08 13:09+0000\n"
+"POT-Creation-Date: 2012-07-08 14:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,90 +18,90 @@ msgstr ""
 "Domain: collective.js.datatables\n"
 
 #. Default: "No data available in table"
-#: ./surl.py:15
+#: ./surl.py:35
 msgid "sEmptyTable"
 msgstr "Aucune données disponible dans le tableau"
 
 #. Default: "First"
-#: ./surl.py:40
+#: ./surl.py:60
 msgid "sFirst"
 msgstr "Premier"
 
 #. Default: "Showing _START_ to _END_ of _TOTAL_ entries"
-#: ./surl.py:17
+#: ./surl.py:37
 msgid "sInfo"
 msgstr "Affichage des &eacute;lements _START_ &agrave; _END_ sur _TOTAL_"
 
 #. Default: "Showing 0 to 0 of 0 entries"
-#: ./surl.py:19
+#: ./surl.py:39
 msgid "sInfoEmpty"
 msgstr "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments"
 
 #. Default: "(filtered from _MAX_ total entries)"
-#: ./surl.py:21
+#: ./surl.py:41
 msgid "sInfoFiltered"
 msgstr "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)"
 
-#: ./surl.py:23
+#: ./surl.py:43
 msgid "sInfoPostFix"
 msgstr "."
 
 #. Default: ","
-#: ./surl.py:25
+#: ./surl.py:45
 msgid "sInfoThousands"
 msgstr ","
 
 #. Default: "Last"
-#: ./surl.py:41
+#: ./surl.py:61
 msgid "sLast"
 msgstr "Dernier"
 
 #. Default: "Show _MENU_ entries"
-#: ./surl.py:27
+#: ./surl.py:47
 msgid "sLengthMenu"
 msgstr "Afficher _MENU_ &eacute;l&eacute;ments"
 
 #. Default: "Loading..."
-#: ./surl.py:29
+#: ./surl.py:49
 msgid "sLoadingRecords"
 msgstr "Téléchargement..."
 
 #. Default: "Next"
-#: ./surl.py:42
+#: ./surl.py:62
 msgid "sNext"
 msgstr "Suivant"
 
 #. Default: "Previous"
-#: ./surl.py:43
+#: ./surl.py:63
 msgid "sPrevious"
 msgstr "Pr&eacute;c&eacute;dent"
 
 #. Default: "Processing..."
-#: ./surl.py:31
+#: ./surl.py:51
 msgid "sProcessing"
 msgstr "Traitement en cours..."
 
 #. Default: "Search:"
-#: ./surl.py:33
+#: ./surl.py:53
 msgid "sSearch"
 msgstr "Rechercher&nbsp;:"
 
 #. Default: "activate to sort column ascending"
-#: ./surl.py:46
+#: ./surl.py:66
 msgid "sSortAscending"
 msgstr "Activer pour trier la colonne en ascendant"
 
 #. Default: "activate to sort column descending"
-#: ./surl.py:48
+#: ./surl.py:68
 msgid "sSortDescending"
 msgstr "actier pour tier la colonne en descendant"
 
-#: ./surl.py:35
+#: ./surl.py:55
 msgid "sUrl"
 msgstr ""
 
 #. Default: "No matching records found"
-#: ./surl.py:37
+#: ./surl.py:57
 msgid "sZeroRecords"
 msgstr "Aucun &eacute;l&eacute;ment &agrave; afficher"
 
