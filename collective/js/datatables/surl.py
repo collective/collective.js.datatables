@@ -8,7 +8,9 @@ class Translations(BrowserView):
     """Translation URL"""
 
     def __call__(self):
-        return self.translate()
+        self.request.response.setHeader('X-Theme-Disabled', 'True')
+        self.request.response.setHeader('Content-Type', 'text/plain')
+        return dumps(self.translate())
 
     def translate(self):
         t = self.context.translate

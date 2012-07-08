@@ -30,7 +30,7 @@ msgstr "Premier"
 #. Default: "Showing _START_ to _END_ of _TOTAL_ entries"
 #: ./surl.py:17
 msgid "sInfo"
-msgstr "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments"
+msgstr "Affichage des &eacute;lements _START_ &agrave; _END_ sur _TOTAL_"
 
 #. Default: "Showing 0 to 0 of 0 entries"
 #: ./surl.py:19
@@ -44,7 +44,7 @@ msgstr "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)"
 
 #: ./surl.py:23
 msgid "sInfoPostFix"
-msgstr ""
+msgstr "."
 
 #. Default: ","
 #: ./surl.py:25
