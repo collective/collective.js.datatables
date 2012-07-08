@@ -1,0 +1,107 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2012-07-08 13:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collective.js.datatables\n"
+
+#. Default: "No data available in table"
+#: ./surl.py:15
+msgid "sEmptyTable"
+msgstr ""
+
+#. Default: "First"
+#: ./surl.py:40
+msgid "sFirst"
+msgstr ""
+
+#. Default: "Showing _START_ to _END_ of _TOTAL_ entries"
+#: ./surl.py:17
+msgid "sInfo"
+msgstr ""
+
+#. Default: "Showing 0 to 0 of 0 entries"
+#: ./surl.py:19
+msgid "sInfoEmpty"
+msgstr ""
+
+#. Default: "(filtered from _MAX_ total entries)"
+#: ./surl.py:21
+msgid "sInfoFiltered"
+msgstr ""
+
+#: ./surl.py:23
+msgid "sInfoPostFix"
+msgstr ""
+
+#. Default: ","
+#: ./surl.py:25
+msgid "sInfoThousands"
+msgstr ""
+
+#. Default: "Last"
+#: ./surl.py:41
+msgid "sLast"
+msgstr ""
+
+#. Default: "Show _MENU_ entries"
+#: ./surl.py:27
+msgid "sLengthMenu"
+msgstr ""
+
+#. Default: "Loading..."
+#: ./surl.py:29
+msgid "sLoadingRecords"
+msgstr ""
+
+#. Default: "Next"
+#: ./surl.py:42
+msgid "sNext"
+msgstr ""
+
+#. Default: "Previous"
+#: ./surl.py:43
+msgid "sPrevious"
+msgstr ""
+
+#. Default: "Processing..."
+#: ./surl.py:31
+msgid "sProcessing"
+msgstr ""
+
+#. Default: "Search:"
+#: ./surl.py:33
+msgid "sSearch"
+msgstr ""
+
+#. Default: "activate to sort column ascending"
+#: ./surl.py:46
+msgid "sSortAscending"
+msgstr ""
+
+#. Default: "activate to sort column descending"
+#: ./surl.py:48
+msgid "sSortDescending"
+msgstr ""
+
+#: ./surl.py:35
+msgid "sUrl"
+msgstr ""
+
+#. Default: "No matching records found"
+#: ./surl.py:37
+msgid "sZeroRecords"
+msgstr ""
+

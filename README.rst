@@ -77,6 +77,21 @@ Next you can create your datatable::
     "oTableTools": {"sSwfPath": "++resource++jquery.datatables/extras/TableTools/media/swf/copy_csv_xls_pdf.swf"}
   });
 
+How to use translations
+-----------------------
+
+This addon provide translations of datatables. To use translations you have
+to init your datatables providing sUrl param::
+
+  $(document).ready(function() {
+    $('#example').dataTable( {
+        "oLanguage": {
+            "sUrl": "@@collective.js.datatables.translation"
+        }
+    } );
+  } );
+
+
 Credits
 =======
 
