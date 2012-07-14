@@ -1,3 +1,4 @@
+*.mo
 *.pyo
 *.pyc
 *.egg-info
