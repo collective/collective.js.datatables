@@ -113,6 +113,7 @@ Contributors
 
 - Nejc Zupan (zupo)
 - Martijn Pieters
+- Luca Fabbri (keul)
 
 .. |makinacom| image:: http://depot.makina-corpus.org/public/logo.gif
 .. _makinacom:  http://www.makina-corpus.com
