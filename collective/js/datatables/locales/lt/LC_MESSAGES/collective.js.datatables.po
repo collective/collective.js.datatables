@@ -1,0 +1,91 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2012-07-08 14:43+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: lt\n"
+"Language-Name: Lithuanian\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collective.js.datatables\n"
+
+#. Default: "No data available in table"
+#: ./surl.py:35
+msgid "sEmptyTable"
+msgstr "Įrašų nerasta."
+
+#. Default: "First"
+#: ./surl.py:60
+msgid "sFirst"
+msgstr "Pirmas"
+
+#. Default: "Showing _START_ to _END_ of _TOTAL_ entries"
+#: ./surl.py:37
+msgid "sInfo"
+msgstr "Rodomi įrašai nuo _START_ iki _END_ iš _TOTAL_ įrašų"
+
+#. Default: "Showing 0 to 0 of 0 entries"
+#: ./surl.py:39
+msgid "sInfoEmpty"
+msgstr "Rodomi įrašai nuo 0 iki 0 iš 0"
+
+#. Default: "(filtered from _MAX_ total entries)"
+#: ./surl.py:41
+msgid "sInfoFiltered"
+msgstr "(atrinkta iš _MAX_ įrašų)"
+
+#: ./surl.py:43
+msgid "sInfoPostFix"
+msgstr "."
+
+#. Default: ","
+#: ./surl.py:45
+msgid "sInfoThousands"
+msgstr "."
+
+#. Default: "Last"
+#: ./surl.py:61
+msgid "sLast"
+msgstr "Paskutinis"
+
+#. Default: "Show _MENU_ entries"
+#: ./surl.py:47
+msgid "sLengthMenu"
+msgstr "Rodyti _MENU_ įrašus"
+
+#. Default: "Next"
+#: ./surl.py:62
+msgid "sNext"
+msgstr "Tolimesnis"
+
+#. Default: "Previous"
+#: ./surl.py:63
+msgid "sPrevious"
+msgstr "Ankstesnis"
+
+#. Default: "Processing..."
+#: ./surl.py:51
+msgid "sProcessing"
+msgstr "Apdorojama..."
+
+#. Default: "Search:"
+#: ./surl.py:53
+msgid "sSearch"
+msgstr "Ieškoti:"
+
+#: ./surl.py:55
+msgid "sUrl"
+msgstr ""
+
+#. Default: "No matching records found"
+#: ./surl.py:57
+msgid "sZeroRecords"
+msgstr "Įrašų nerasta."

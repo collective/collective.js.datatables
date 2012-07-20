@@ -1,0 +1,92 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2012-07-08 14:43+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: es\n"
+"Language-Name: Spannish\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collective.js.datatables\n"
+
+#. Default: "No data available in table"
+#: ./surl.py:35
+msgid "sEmptyTable"
+msgstr "No se encontraron resultados."
+
+#. Default: "First"
+#: ./surl.py:60
+msgid "sFirst"
+msgstr "Primero"
+
+#. Default: "Showing _START_ to _END_ of _TOTAL_ entries"
+#: ./surl.py:37
+msgid "sInfo"
+msgstr "Mostrando desde _START_ hasta _END_ de _TOTAL_ registros"
+
+#. Default: "Showing 0 to 0 of 0 entries"
+#: ./surl.py:39
+msgid "sInfoEmpty"
+msgstr "Mostrando desde 0 hasta 0 de 0 registros"
+
+#. Default: "(filtered from _MAX_ total entries)"
+#: ./surl.py:41
+msgid "sInfoFiltered"
+msgstr "(filtrado de _MAX_ registros en total)"
+
+#: ./surl.py:43
+msgid "sInfoPostFix"
+msgstr "."
+
+#. Default: ","
+#: ./surl.py:45
+msgid "sInfoThousands"
+msgstr "."
+
+#. Default: "Last"
+#: ./surl.py:61
+msgid "sLast"
+msgstr "Último"
+
+#. Default: "Show _MENU_ entries"
+#: ./surl.py:47
+msgid "sLengthMenu"
+msgstr "Mostrar _MENU_ registros"
+
+#. Default: "Next"
+#: ./surl.py:62
+msgid "sNext"
+msgstr "Siguiente"
+
+#. Default: "Previous"
+#: ./surl.py:63
+msgid "sPrevious"
+msgstr "Anterior"
+
+#. Default: "Processing..."
+#: ./surl.py:51
+msgid "sProcessing"
+msgstr "Procesando..."
+
+#. Default: "Search:"
+#: ./surl.py:53
+msgid "sSearch"
+msgstr "Buscar:"
+
+#: ./surl.py:55
+msgid "sUrl"
+msgstr ""
+
+#. Default: "No matching records found"
+#: ./surl.py:57
+msgid "sZeroRecords"
+msgstr "No se encontraron resultados."
+
