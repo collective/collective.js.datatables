@@ -94,7 +94,7 @@ msgstr "Activer pour trier la colonne en ascendant"
 #. Default: "activate to sort column descending"
 #: ./surl.py:68
 msgid "sSortDescending"
-msgstr "actier pour tier la colonne en descendant"
+msgstr "Activer pour tier la colonne en descendant"
 
 #: ./surl.py:55
 msgid "sUrl"
