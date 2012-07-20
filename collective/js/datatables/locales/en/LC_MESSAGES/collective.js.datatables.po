@@ -1,0 +1,107 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2012-07-08 14:43+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collective.js.datatables\n"
+
+#. Default: "No data available in table"
+#: ./surl.py:35
+msgid "sEmptyTable"
+msgstr "No data available in table"
+
+#. Default: "First"
+#: ./surl.py:60
+msgid "sFirst"
+msgstr "First"
+
+#. Default: "Showing _START_ to _END_ of _TOTAL_ entries"
+#: ./surl.py:37
+msgid "sInfo"
+msgstr "Showing _START_ to _END_ of _TOTAL_ entries"
+
+#. Default: "Showing 0 to 0 of 0 entries"
+#: ./surl.py:39
+msgid "sInfoEmpty"
+msgstr "Showing 0 to 0 of 0 entries"
+
+#. Default: "(filtered from _MAX_ total entries)"
+#: ./surl.py:41
+msgid "sInfoFiltered"
+msgstr "(filtered from _MAX_ total entries)"
+
+#: ./surl.py:43
+msgid "sInfoPostFix"
+msgstr "."
+
+#. Default: ","
+#: ./surl.py:45
+msgid "sInfoThousands"
+msgstr ","
+
+#. Default: "Last"
+#: ./surl.py:61
+msgid "sLast"
+msgstr "Last"
+
+#. Default: "Show _MENU_ entries"
+#: ./surl.py:47
+msgid "sLengthMenu"
+msgstr "Show _MENU_ entries"
+
+#. Default: "Loading..."
+#: ./surl.py:49
+msgid "sLoadingRecords"
+msgstr "Loading..."
+
+#. Default: "Next"
+#: ./surl.py:62
+msgid "sNext"
+msgstr "Next"
+
+#. Default: "Previous"
+#: ./surl.py:63
+msgid "sPrevious"
+msgstr "Previous"
+
+#. Default: "Processing..."
+#: ./surl.py:51
+msgid "sProcessing"
+msgstr "Processing..."
+
+#. Default: "Search:"
+#: ./surl.py:53
+msgid "sSearch"
+msgstr "Search:"
+
+#. Default: "activate to sort column ascending"
+#: ./surl.py:66
+msgid "sSortAscending"
+msgstr "Activate to sort column ascending"
+
+#. Default: "activate to sort column descending"
+#: ./surl.py:68
+msgid "sSortDescending"
+msgstr "Activate to sort column descending"
+
+#: ./surl.py:55
+msgid "sUrl"
+msgstr ""
+
+#. Default: "No matching records found"
+#: ./surl.py:57
+msgid "sZeroRecords"
+msgstr "No matching records found"
+
