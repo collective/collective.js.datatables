@@ -20,7 +20,7 @@ msgstr ""
 #. Default: "No data available in table"
 #: ./surl.py:35
 msgid "sEmptyTable"
-msgstr "Aucune données disponible dans le tableau"
+msgstr "Aucune donnée disponible dans le tableau"
 
 #. Default: "First"
 #: ./surl.py:60
