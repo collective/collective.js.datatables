@@ -4,7 +4,7 @@ Changelog
 1.9.2.4 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add translations: de, nl, es, it [ebrehault]
 
 
 1.9.2.3 (2012-07-14)
