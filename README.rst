@@ -66,9 +66,12 @@ First include dependencies in your template, or register theses in
 portal_javascripts::
 
   <link rel="stylesheet" type="text/css" media="screen" href="++resource++jquery.datatables/media/css/jquery.dataTables.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="++resource++jquery.datatables/extras/TableTools/media/css/TableTools.css">
   <script type="text/javascript" src="++resource++jquery.datatables.js"></script>
   <script type="text/javascript" src="++resource++jquery.datatables/extras/TableTools/media/js/ZeroClipboard.js"></script>
   <script type="text/javascript" src="++resource++jquery.datatables/extras/TableTools/media/js/TableTools.js"></script>
+  <style type="text/css">.clear{clear:both}</style>
+
 
 Next you can create your datatable::
 
