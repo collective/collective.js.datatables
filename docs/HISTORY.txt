@@ -1,10 +1,11 @@
 Changelog
 =========
 
-1.9.2.4 (unreleased)
+1.9.3.1 (unreleased)
 --------------------
 
 - Add translations: de, nl, es, it [ebrehault]
+- upgrade DataTables to 1.9.3
 
 
 1.9.2.3 (2012-07-14)
