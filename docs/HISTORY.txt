@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.9.3.1 (unreleased)
+1.9.3.1 (2012-08-09)
 --------------------
 
 - Add translations: de, nl, es, it [ebrehault]
