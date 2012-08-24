@@ -62,7 +62,7 @@ This addon embed extras plugins:
 
 How to use tabletools
 ---------------------
-First include dependencies in your template, or register theses in 
+First include dependencies in your template, or register theses in
 portal_javascripts::
 
   <link rel="stylesheet" type="text/css" media="screen" href="++resource++jquery.datatables/media/css/jquery.dataTables.css">
@@ -117,6 +117,7 @@ Contributors
 - Nejc Zupan (zupo)
 - Martijn Pieters
 - Luca Fabbri (keul)
+- Jens Klein (jensens)
 
 .. |makinacom| image:: http://depot.makina-corpus.org/public/logo.gif
 .. _makinacom:  http://www.makina-corpus.com
