@@ -1,5 +1,6 @@
 from Products.Five.browser import BrowserView
 from json import dumps
+from zope.i18n import translate
 from zope.i18nmessageid import MessageFactory
 _ = MessageFactory("collective.js.datatables")
 
@@ -12,23 +13,18 @@ class Translations(BrowserView):
         self.request.response.setHeader('Content-Type', 'text/plain')
         return dumps(self.translate())
 
+
     def translate(self):
-        t = self.context.translate
-        translated = {}
-        msgids = self.msgids()
-        for key in msgids:
-            if key not in ('oPaginate', 'oAria'):
-                translated[key] = t(msgids[key])
-
-        translated['oPaginate'] = {}
-        for key in msgids['oPaginate']:
-            translated['oPaginate'][key] = t(msgids['oPaginate'][key])
-
-        translated['oAria'] = {}
-        for key in msgids['oAria']:
-            translated['oAria'][key] = t(msgids['oAria'][key])
-
-        return translated
+        def translate_dict(msgids):
+            translated = dict()
+            for key in msgids:
+                if isinstance(msgids[key], dict):
+                    translated[key] = translate_dict(msgids[key])
+                else:
+                    translated[key] = translate(msgids[key],
+                                                context=self.request)
+            return translated
+        return translate_dict(self.msgids())
 
     def msgids(self):
         return {
