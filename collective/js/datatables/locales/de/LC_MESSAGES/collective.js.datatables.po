@@ -30,17 +30,17 @@ msgstr "Erster"
 #. Default: "Showing _START_ to _END_ of _TOTAL_ entries"
 #: ./surl.py:37
 msgid "sInfo"
-msgstr "_START_ bis _END_ aus _TOTAL_ Datensätzen"
+msgstr "_START_ bis _END_ aus _TOTAL_ Einträgen"
 
 #. Default: "Showing 0 to 0 of 0 entries"
 #: ./surl.py:39
 msgid "sInfoEmpty"
-msgstr "Es sind keine passenden Datensätze vorhanden!"
+msgstr "Es sind keine passenden Einträge vorhanden!"
 
 #. Default: "(filtered from _MAX_ total entries)"
 #: ./surl.py:41
 msgid "sInfoFiltered"
-msgstr "(gefiltert aus _MAX_ Datensätzen)"
+msgstr "(gefiltert aus _MAX_ Einträgen)"
 
 #: ./surl.py:43
 msgid "sInfoPostFix"
@@ -59,7 +59,7 @@ msgstr "Letzter"
 #. Default: "Show _MENU_ entries"
 #: ./surl.py:47
 msgid "sLengthMenu"
-msgstr "Zeige _MENU_ Datensätze"
+msgstr "Zeige _MENU_ Einträge"
 
 #. Default: "Next"
 #: ./surl.py:62
