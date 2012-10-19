@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0 (unreleased)
+2.0 (2012-10-19)
 ----------------
 
 - use zope.i18n.translate directly and avoid resticted python calls. [jensens]
