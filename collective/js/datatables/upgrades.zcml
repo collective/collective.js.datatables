@@ -1,0 +1,14 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:gs="http://namespaces.zope.org/genericsetup"
+  i18n_domain="collective.js.datatables">
+
+  <gs:upgradeStep
+    title="Register the provided dataTable.css"
+    description=""
+    source="*"
+    destination="2000"
+    handler=".upgrades.common"
+    profile="collective.js.datatables:default"/>
+
+</configure>

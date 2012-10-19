@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.9.3.2 (unreleased)
---------------------
+2.0 (unreleased)
+----------------
 
 - use zope.i18n.translate directly and avoid resticted python calls. [jensens]
 
@@ -11,6 +11,7 @@ Changelog
 - Update German translation and use more genric word Einträge instaed of 
   Datensätze. [jensens]
 
+- upgrade DataTables to 1.9.4 [toutpt]
 
 1.9.3.1 (2012-08-09)
 --------------------

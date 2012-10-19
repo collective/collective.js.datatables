@@ -16,6 +16,7 @@
       description="jQuery DataTables for Plone 4"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot" />
+  <include file="upgrades.zcml"/>
 
   <browser:resource
       name="jquery.datatables.js"
@@ -45,6 +46,5 @@
       name="datatables"
       directory="resources/media"
       />
-  <include package=".upgrades"/>
 
 </configure>

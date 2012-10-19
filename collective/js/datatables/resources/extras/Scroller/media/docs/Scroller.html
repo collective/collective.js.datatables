@@ -33,7 +33,7 @@
 					<h2>Navigation</h2>
 					<ul>
 					<li><a href="#top">Overview</a></li>
-					<li><a href="#summary">Summary</a><div><a href="#summary_namespaces">Namespaces</a> | <a href="#summary_properties">Properties</a> | <a href="#summary_methods">Methods</a></div></li><li><a href="#details">Details</a><div><a href="#details_properties">Properties</a> | <a href="#details_methods">Methods</a></div></li></ul>
+					<li><a href="#summary">Summary</a><div><table cellpadding="5" border="0" cellspacing="0" width="100%"><tbody><tr><td>Classes (0)</td><td><a href="#summary_namespaces">Namespaces (3)</a></td></tr><tr><td><a href="#summary_properties">Properties (1)</a></td><td><a href="#summary_properties_static">Static properties (1)</a></td></tr><tr><td><a href="#summary_methods">Methods (4)</a></td><td>Static methods (0)</td></tr><tr><td>Events (0)</td><td></td></tr></tbody></table></div></li><li><a href="#details">Details</a><div><table cellpadding="5" border="0" cellspacing="0" width="100%"><tbody><tr><td><a href="#summary_properties">Properties (1)</a></td><td><a href="#summary_properties_static">Static properties (1)</a></td></tr><tr><td><a href="#summary_methods">Methods (4)</a></td><td>Static methods (0)</td></tr><tr><td>Events (0)</td><td></td></tr></tbody></table></div></li></ul>
 					<div style="margin-top: 10px;">
 						<input type="hidden" name="show_private" value="0">
 						<span id="private_label">Hiding</span> private elements 
@@ -52,7 +52,7 @@
 					<a name="overview"></a>
 					<div class="doc_overview">
 						<div class="nav_blocker"></div>
-						<dl><dt id="Scroller" class=" even"><a name="Scroller"></a><a name="Scroller_details"></a><span class="type-attr"><span class="type-signature"></span></span><span class="type-name"><a>new Scroller</a></span><span class="type-sig"><span class="signature">(oDT, <span class="optional">oOpts</span>)</span><span class="type-signature"></span></span></span></dt><dd class=" even"><p class="description">Scroller is a virtual rendering plug-in for DataTables which allows large
+						<dl><dt id="Scroller" class="  even"><a name="Scroller"></a><a name="Scroller_details"></a><span class="type-attr"><span class="type-signature"></span></span><span class="type-name"><a>new Scroller</a></span><span class="type-sig"><span class="signature">(oDT, <span class="optional">oOpts</span>)</span><span class="type-signature"></span></span></span></dt><dd class="  even"><p>Scroller is a virtual rendering plug-in for DataTables which allows large
 datasets to be drawn on screen every quickly. What the virtual rendering means
 is that only the visible portion of the table (and a bit to either side to make
 the scrolling smooth) is drawn, while the scrolling container gives the 
@@ -60,10 +60,16 @@ visual impression that the whole table is visible. This is done by making use
 of the pagination abilities of DataTables and moving the table around in the
 scrolling container DataTables adds to the page. The scrolling container is
 forced to the height it would be for the full table display using an extra 
-element. <br><br>Note that rows in the table MUST all be the same height. Information in a cell
-which expands on to multiple lines will cause some odd behaviour in the scrolling.<br><br>Scroller is initialised by simply including the letter 'S' in the sDom for the
+element. </p>
+
+<p>Note that rows in the table MUST all be the same height. Information in a cell
+which expands on to multiple lines will cause some odd behaviour in the scrolling.</p>
+
+<p>Scroller is initialised by simply including the letter 'S' in the sDom for the
 table you want to have this feature enabled on. Note that the 'S' must come
-AFTER the 't' parameter in sDom.<br><br>Key features include:
+AFTER the 't' parameter in sDom.</p>
+
+<p>Key features include:
   <ul class="limit_length">
     <li>Speed! The aim of Scroller for DataTables is to make rendering large data sets fast</li>
     <li>Full compatibility with deferred rendering in DataTables 1.9 for maximum speed</li>
@@ -88,7 +94,7 @@ AFTER the 't' parameter in sDom.<br><br>Key features include:
 	</thead>
 	
 	<tbody>
-	<tr class="even"><td class="number right_border"><div>1</div></td><td class="name">oDT</td><td class="type type-param">object</td><td class="attributes"></td><td class="default"></td><td class="description last">DataTables settings object</td></tr><tr class="odd"><td class="number right_border"><div>2</div></td><td class="name">oOpts</td><td class="type type-param">object</td><td class="attributes">Optional</td><td class="default">{}</td><td class="description last">Configuration object for FixedColumns. Options are defined by <a href="Scroller.oDefaults.html">Scroller.oDefaults</a></td></tr>
+	<tr class="even"><td class="number right_border"><div>1</div></td><td class="name">oDT</td><td class="type type-param">object</td><td class="attributes"></td><td class="default"></td><td class="description last"><p>DataTables settings object</p></td></tr><tr class="odd"><td class="number right_border"><div>2</div></td><td class="name">oOpts</td><td class="type type-param">object</td><td class="attributes">Optional</td><td class="default">{}</td><td class="description last"><p>Configuration object for FixedColumns. Options are defined by <a href="Scroller.oDefaults.html">Scroller.oDefaults</a></p></td></tr>
 	</tbody>
 </table><h5>Example:</h5>
     <div class="example-code">
@@ -104,7 +110,7 @@ AFTER the 't' parameter in sDom.<br><br>Key features include:
 </div>
 </dl><h3 class="subsection-title">Requires</h3>
 <ul>
-	<li>jQuery 1.4+</li><li>DataTables 1.9.0+</li>
+	<li>module:jQuery</li><li>module:DataTables</li>
 </ul>
 
 					</div>
@@ -116,17 +122,21 @@ AFTER the 't' parameter in sDom.<br><br>Key features include:
 
 						<div class="doc_group"><a name="summary_namespaces"></a><h3 class="subsection-title">Namespaces</h3>
 <dl>
-	<dt class="even"><span class="type-name"><a href="c6053fac6b.html">dom</a></span></dt><dd class="even">DOM elements used by the class instance</dd><dt class="odd"><span class="type-name"><a href="Scroller.oDefaults.html">oDefaults</a></span></dt><dd class="odd">Scroller default settings for initialisation</dd><dt class="even"><span class="type-name"><a href="baed189d4a.html">s</a></span></dt><dd class="even">Settings object which contains customisable information for the Scroller instance</dd>
-</dl></div><div class="doc_group"><a name="summary_properties"></a><h3 class="subsection-title">Properties</h3>
+	<dt class="even"><span class="type-name"><a href="c6053fac6b.html">dom</a></span></dt><dd class="even"><p>DOM elements used by the class instance</p></dd><dt class="odd"><span class="type-name"><a href="Scroller.oDefaults.html">oDefaults</a></span></dt><dd class="odd"><p>Scroller default settings for initialisation</p></dd><dt class="even"><span class="type-name"><a href="baed189d4a.html">s</a></span></dt><dd class="even"><p>Settings object which contains customisable information for the Scroller instance</p></dd>
+</dl></div><div class="doc_group"><a name="summary_properties"></a><h3 class="subsection-title">Properties - instance</h3>
 
 <dl>
-    <dt class="  even"><span class="type-attr"><span class="type-signature"></span></span><span class="type-name"><a href="#CLASS">CLASS</a></span><span class="type-sig"><span class="type-signature"> :String</span></span></dt><dd class="  even">Name of this class</dd><dt class="  odd"><span class="type-attr"><span class="type-signature">&lt;static> </span></span><span class="type-name"><a href="#VERSION">VERSION</a></span><span class="type-sig"><span class="type-signature"> :String</span></span></dt><dd class="  odd">Scroller version</dd>
-</dl></div><div class="doc_group"><a name="summary_methods"></a><h3 class="subsection-title">Methods</h3>
+    <dt class="  even"><span class="type-attr"><span class="type-signature"></span></span><span class="type-name"><a href="#CLASS">CLASS</a></span><span class="type-sig"><span class="type-signature"> :String</span></span></dt><dd class="  even"><p>Name of this class</p></dd>
+</dl></div><div class="doc_group"><a name="summary_properties_static"></a><h3 class="subsection-title">Properties - static</h3>
 
 <dl>
-    <dt class=" even"><span class="type-attr"><span class="type-signature"></span></span><span class="type-name"><a href="#fnMeasure">fnMeasure</a></span><span class="type-sig"><span class="signature">(<span class="optional">bRedraw</span>)</span><span class="type-signature"> &rarr; {void}</span></span></dt><dd class=" even">Calculate and store information about how many rows are to be displayed in the scrolling
+    <dt class="  even"><span class="type-attr"><span class="type-signature">&lt;static> </span></span><span class="type-name"><a href="#VERSION">VERSION</a></span><span class="type-sig"><span class="type-signature"> :String</span></span></dt><dd class="  even"><p>Scroller version</p></dd>
+</dl></div><div class="doc_group"><a name="summary_methods"></a><h3 class="subsection-title">Methods - instance</h3>
+
+<dl>
+    <dt class="  even"><span class="type-attr"><span class="type-signature"></span></span><span class="type-name"><a href="#fnMeasure">fnMeasure</a></span><span class="type-sig"><span class="signature">(<span class="optional">bRedraw</span>)</span><span class="type-signature"> &rarr; {void}</span></span></dt><dd class="  even"><p>Calculate and store information about how many rows are to be displayed in the scrolling
 viewport, based on current dimensions in the browser's rendering. This can be particularly
-useful if the table is initially drawn in a hidden element - for example in a tab.</dd><dt class=" odd"><span class="type-attr"><span class="type-signature"></span></span><span class="type-name"><a href="#fnPixelsToRow">fnPixelsToRow</a></span><span class="type-sig"><span class="signature">(iPixels)</span><span class="type-signature"> &rarr; {int}</span></span></dt><dd class=" odd">Calculate the row number that will be found at the given pixel position (y-scroll)</dd><dt class=" even"><span class="type-attr"><span class="type-signature"></span></span><span class="type-name"><a href="#fnRowToPixels">fnRowToPixels</a></span><span class="type-sig"><span class="signature">(iRow)</span><span class="type-signature"> &rarr; {int}</span></span></dt><dd class=" even">Calculate the pixel position from the top of the scrolling container for a given row</dd><dt class=" odd"><span class="type-attr"><span class="type-signature"></span></span><span class="type-name"><a href="#fnScrollToRow">fnScrollToRow</a></span><span class="type-sig"><span class="signature">(iRow, <span class="optional">bAnimate</span>)</span><span class="type-signature"> &rarr; {void}</span></span></dt><dd class=" odd">Calculate the row number that will be found at the given pixel position (y-scroll)</dd>
+useful if the table is initially drawn in a hidden element - for example in a tab.</p></dd><dt class="  odd"><span class="type-attr"><span class="type-signature"></span></span><span class="type-name"><a href="#fnPixelsToRow">fnPixelsToRow</a></span><span class="type-sig"><span class="signature">(iPixels)</span><span class="type-signature"> &rarr; {int}</span></span></dt><dd class="  odd"><p>Calculate the row number that will be found at the given pixel position (y-scroll)</p></dd><dt class="  even"><span class="type-attr"><span class="type-signature"></span></span><span class="type-name"><a href="#fnRowToPixels">fnRowToPixels</a></span><span class="type-sig"><span class="signature">(iRow)</span><span class="type-signature"> &rarr; {int}</span></span></dt><dd class="  even"><p>Calculate the pixel position from the top of the scrolling container for a given row</p></dd><dt class="  odd"><span class="type-attr"><span class="type-signature"></span></span><span class="type-name"><a href="#fnScrollToRow">fnScrollToRow</a></span><span class="type-sig"><span class="signature">(iRow, <span class="optional">bAnimate</span>)</span><span class="type-signature"> &rarr; {void}</span></span></dt><dd class="  odd"><p>Calculate the row number that will be found at the given pixel position (y-scroll)</p></dd>
 </dl>
 </div>
 					</div>
@@ -137,18 +147,21 @@ useful if the table is initially drawn in a hidden element - for example in a ta
 					<div class="doc_details">
 						<a name="details"></a>
 						<h2>Details</h2>
-						<div class="doc_group"><a name="details_properties"></a><h3 class="subsection-title">Properties</h3>
+						<div class="doc_group"><a name="details_properties"></a><h3 class="subsection-title">Properties - instance</h3>
 <dl>
-    <dt class="  even"><a name="CLASS"></a><a name="CLASS_details"></a><span class="type-attr"><span class="type-signature"></span></span><span class="type-name"><a href="#CLASS">CLASS</a></span><span class="type-sig"><span class="type-signature"> :String</span></span></dt><dd class="  even"><p class="description">Name of this class</p><div class="collapse_details"><dl class="details">
-	
-</dl>
-</div></dd><dt class="  odd"><a name="VERSION"></a><a name="VERSION_details"></a><span class="type-attr"><span class="type-signature">&lt;static> </span></span><span class="type-name"><a href="#VERSION">VERSION</a></span><span class="type-sig"><span class="type-signature"> :String</span></span></dt><dd class="  odd"><p class="description">Scroller version</p><div class="collapse_details"><dl class="details">
+    <dt class="  even"><a name="CLASS"></a><a name="CLASS_details"></a><span class="type-attr"><span class="type-signature"></span></span><span class="type-name"><a href="#CLASS">CLASS</a></span><span class="type-sig"><span class="type-signature"> :String</span></span></dt><dd class="  even"><p>Name of this class</p><div class="collapse_details"><dl class="details">
 	
 </dl>
 </div></dd>
-</dl></div><div class="doc_group"><a name="details_methods"></a><h3 class="subsection-title">Methods</h3>
+</dl></div><div class="doc_group"><a name="details_properties"></a><h3 class="subsection-title">Properties - static</h3>
 <dl>
-    <dt id="Scroller#fnMeasure" class=" even"><a name="fnMeasure"></a><a name="fnMeasure_details"></a><span class="type-attr"><span class="type-signature"></span></span><span class="type-name"><a>fnMeasure</a></span><span class="type-sig"><span class="signature">(<span class="optional">bRedraw</span>)</span><span class="type-signature"> &rarr; {void}</span></span></span></dt><dd class=" even"><p class="description">Calculate and store information about how many rows are to be displayed in the scrolling
+    <dt class="  even"><a name="VERSION"></a><a name="VERSION_details"></a><span class="type-attr"><span class="type-signature">&lt;static> </span></span><span class="type-name"><a href="#VERSION">VERSION</a></span><span class="type-sig"><span class="type-signature"> :String</span></span></dt><dd class="  even"><p>Scroller version</p><div class="collapse_details"><dl class="details">
+	
+</dl>
+</div></dd>
+</dl></div><div class="doc_group"><a name="details_methods"></a><h3 class="subsection-title">Methods - instance</h3>
+<dl>
+    <dt id="Scroller#fnMeasure" class="  even"><a name="fnMeasure"></a><a name="fnMeasure_details"></a><span class="type-attr"><span class="type-signature"></span></span><span class="type-name"><a>fnMeasure</a></span><span class="type-sig"><span class="signature">(<span class="optional">bRedraw</span>)</span><span class="type-signature"> &rarr; {void}</span></span></span></dt><dd class="  even"><p>Calculate and store information about how many rows are to be displayed in the scrolling
 viewport, based on current dimensions in the browser's rendering. This can be particularly
 useful if the table is initially drawn in a hidden element - for example in a tab.</p><div class="collapse_details"><dl class="details">
 	
@@ -168,8 +181,8 @@ useful if the table is initially drawn in a hidden element - for example in a ta
 	</thead>
 	
 	<tbody>
-	<tr class="even"><td class="number right_border"><div>1</div></td><td class="name">bRedraw</td><td class="type type-param">bool</td><td class="attributes">Optional</td><td class="default">true</td><td class="description last">Redraw the table automatically after the recalculation, with
-   the new dimentions forming the basis for the draw.</td></tr>
+	<tr class="even"><td class="number right_border"><div>1</div></td><td class="name">bRedraw</td><td class="type type-param">bool</td><td class="attributes">Optional</td><td class="default">true</td><td class="description last"><p>Redraw the table automatically after the recalculation, with
+   the new dimentions forming the basis for the draw.</p></td></tr>
 	</tbody>
 </table><h5>Example:</h5>
     <div class="example-code">
@@ -194,7 +207,7 @@ useful if the table is initially drawn in a hidden element - for example in a ta
      }, 3000 );</pre>
     </div>
 </div>
-<dt id="Scroller#fnPixelsToRow" class=" odd"><a name="fnPixelsToRow"></a><a name="fnPixelsToRow_details"></a><span class="type-attr"><span class="type-signature"></span></span><span class="type-name"><a>fnPixelsToRow</a></span><span class="type-sig"><span class="signature">(iPixels)</span><span class="type-signature"> &rarr; {int}</span></span></span></dt><dd class=" odd"><p class="description">Calculate the row number that will be found at the given pixel position (y-scroll)</p><div class="collapse_details"><dl class="details">
+<dt id="Scroller#fnPixelsToRow" class="  odd"><a name="fnPixelsToRow"></a><a name="fnPixelsToRow_details"></a><span class="type-attr"><span class="type-signature"></span></span><span class="type-name"><a>fnPixelsToRow</a></span><span class="type-sig"><span class="signature">(iPixels)</span><span class="type-signature"> &rarr; {int}</span></span></span></dt><dd class="  odd"><p>Calculate the row number that will be found at the given pixel position (y-scroll)</p><div class="collapse_details"><dl class="details">
 	
 </dl>
 <h5>Parameters:</h5>
@@ -212,9 +225,9 @@ useful if the table is initially drawn in a hidden element - for example in a ta
 	</thead>
 	
 	<tbody>
-	<tr class="even"><td class="number right_border"><div>1</div></td><td class="name">iPixels</td><td class="type type-param">int</td><td class="attributes"></td><td class="default"></td><td class="description last">Offset from top to caluclate the row number of</td></tr>
+	<tr class="even"><td class="number right_border"><div>1</div></td><td class="name">iPixels</td><td class="type type-param">int</td><td class="attributes"></td><td class="default"></td><td class="description last"><p>Offset from top to caluclate the row number of</p></td></tr>
 	</tbody>
-</table><h5>Returns:</h5><p class="returns">Row index</p><h5>Example:</h5>
+</table><h5>Returns:</h5><p class="returns"><p>Row index</p></p><h5>Example:</h5>
     <div class="example-code">
     	<pre class="brush: js">   $(document).ready(function() {
      $('#example').dataTable( {
@@ -230,7 +243,7 @@ useful if the table is initially drawn in a hidden element - for example in a ta
    } );</pre>
     </div>
 </div>
-<dt id="Scroller#fnRowToPixels" class=" even"><a name="fnRowToPixels"></a><a name="fnRowToPixels_details"></a><span class="type-attr"><span class="type-signature"></span></span><span class="type-name"><a>fnRowToPixels</a></span><span class="type-sig"><span class="signature">(iRow)</span><span class="type-signature"> &rarr; {int}</span></span></span></dt><dd class=" even"><p class="description">Calculate the pixel position from the top of the scrolling container for a given row</p><div class="collapse_details"><dl class="details">
+<dt id="Scroller#fnRowToPixels" class="  even"><a name="fnRowToPixels"></a><a name="fnRowToPixels_details"></a><span class="type-attr"><span class="type-signature"></span></span><span class="type-name"><a>fnRowToPixels</a></span><span class="type-sig"><span class="signature">(iRow)</span><span class="type-signature"> &rarr; {int}</span></span></span></dt><dd class="  even"><p>Calculate the pixel position from the top of the scrolling container for a given row</p><div class="collapse_details"><dl class="details">
 	
 </dl>
 <h5>Parameters:</h5>
@@ -248,9 +261,9 @@ useful if the table is initially drawn in a hidden element - for example in a ta
 	</thead>
 	
 	<tbody>
-	<tr class="even"><td class="number right_border"><div>1</div></td><td class="name">iRow</td><td class="type type-param">int</td><td class="attributes"></td><td class="default"></td><td class="description last">Row number to calculate the position of</td></tr>
+	<tr class="even"><td class="number right_border"><div>1</div></td><td class="name">iRow</td><td class="type type-param">int</td><td class="attributes"></td><td class="default"></td><td class="description last"><p>Row number to calculate the position of</p></td></tr>
 	</tbody>
-</table><h5>Returns:</h5><p class="returns">Pixels</p><h5>Example:</h5>
+</table><h5>Returns:</h5><p class="returns"><p>Pixels</p></p><h5>Example:</h5>
     <div class="example-code">
     	<pre class="brush: js">   $(document).ready(function() {
      $('#example').dataTable( {
@@ -266,7 +279,7 @@ useful if the table is initially drawn in a hidden element - for example in a ta
    } );</pre>
     </div>
 </div>
-<dt id="Scroller#fnScrollToRow" class=" odd"><a name="fnScrollToRow"></a><a name="fnScrollToRow_details"></a><span class="type-attr"><span class="type-signature"></span></span><span class="type-name"><a>fnScrollToRow</a></span><span class="type-sig"><span class="signature">(iRow, <span class="optional">bAnimate</span>)</span><span class="type-signature"> &rarr; {void}</span></span></span></dt><dd class=" odd"><p class="description">Calculate the row number that will be found at the given pixel position (y-scroll)</p><div class="collapse_details"><dl class="details">
+<dt id="Scroller#fnScrollToRow" class="  odd"><a name="fnScrollToRow"></a><a name="fnScrollToRow_details"></a><span class="type-attr"><span class="type-signature"></span></span><span class="type-name"><a>fnScrollToRow</a></span><span class="type-sig"><span class="signature">(iRow, <span class="optional">bAnimate</span>)</span><span class="type-signature"> &rarr; {void}</span></span></span></dt><dd class="  odd"><p>Calculate the row number that will be found at the given pixel position (y-scroll)</p><div class="collapse_details"><dl class="details">
 	
 </dl>
 <h5>Parameters:</h5>
@@ -284,7 +297,7 @@ useful if the table is initially drawn in a hidden element - for example in a ta
 	</thead>
 	
 	<tbody>
-	<tr class="even"><td class="number right_border"><div>1</div></td><td class="name">iRow</td><td class="type type-param">int</td><td class="attributes"></td><td class="default"></td><td class="description last">Row index to scroll to</td></tr><tr class="odd"><td class="number right_border"><div>2</div></td><td class="name">bAnimate</td><td class="type type-param">bool</td><td class="attributes">Optional</td><td class="default">true</td><td class="description last">Animate the transision or not</td></tr>
+	<tr class="even"><td class="number right_border"><div>1</div></td><td class="name">iRow</td><td class="type type-param">int</td><td class="attributes"></td><td class="default"></td><td class="description last"><p>Row index to scroll to</p></td></tr><tr class="odd"><td class="number right_border"><div>2</div></td><td class="name">bAnimate</td><td class="type type-param">bool</td><td class="attributes">Optional</td><td class="default">true</td><td class="description last"><p>Animate the transision or not</p></td></tr>
 	</tbody>
 </table><h5>Example:</h5>
     <div class="example-code">
@@ -317,7 +330,7 @@ useful if the table is initially drawn in a hidden element - for example in a ta
 			Scroller: Copyright 2011-2012 Allan Jardine, all rights reserved<br>
 
 			Documentation generated by <a href="https://github.com/micmath/JSDoc">JSDoc 3</a> on
-			8th Aug 2012 - 22:54
+			23th Sep 2012 - 14:28
 			with the <a href="http://datatables.net/">DataTables</a> template.
 		</div>
 	</body>
