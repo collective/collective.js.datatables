@@ -69,7 +69,7 @@ msgstr "Carico..."
 #. Default: "Next"
 #: ./surl.py:62
 msgid "sNext"
-msgstr "Prossimo"
+msgstr "Successivo"
 
 #. Default: "Previous"
 #: ./surl.py:63
