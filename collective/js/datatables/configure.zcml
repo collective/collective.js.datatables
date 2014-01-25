@@ -20,7 +20,7 @@
 
   <browser:resource
       name="jquery.datatables.js"
-      file="resources/media/js/jquery.dataTables.js" />
+      file="resources/media/js/jquery.dataTables.min.js" />
 
   <browser:resource
       name="jquery.datatables-1.9.js"

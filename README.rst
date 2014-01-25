@@ -7,14 +7,14 @@ enhancement, which will add advanced interaction controls to any HTML table.
 
 This version includes datatables 1.9.4 without the examples available in the
 source distribution of the plugin. It is provided with an
-``@@example.datatables`` view.
+``@@example.datatables`` view (not activated by default).
 
 Install
 =======
 
 A genericsetup profile is provided to add ``jquery.dataTables`` to
-``portal_javascript`` in a non-minified version with compression option set
-to *safe*.
+``portal_javascript`` in a minified version with compression option set
+to *none*.
 
 Key features of jquery.dataTables
 =================================
