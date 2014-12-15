@@ -3,4 +3,8 @@
  <stylesheet
     id="++resource++jquery.datatables/media/css/jquery.dataTables.css"
     applyPrefix="True"/>
+  <stylesheet
+    id="++resource++jquery.datatables/media/css/jquery.dataTables_themeroller.css"
+    insert-after="++resource++jquery.datatables/media/css/jquery.dataTables.css"
+    applyPrefix="True"/>
 </object>

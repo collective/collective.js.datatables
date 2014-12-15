@@ -5,9 +5,9 @@ DataTables_ is a plug-in for the jQuery_ Javascript library.
 It is a highly flexible tool, based upon the principle of progressive
 enhancement, which will add advanced interaction controls to any HTML table.
 
-This version includes datatables 1.9.4 without the examples available in the
+This version includes datatables 1.10.4 without the examples available in the
 source distribution of the plugin. It is provided with an
-``@@example.datatables`` view (not activated by default).
+``@@example.datatables`` view.
 
 Install
 =======
@@ -15,6 +15,12 @@ Install
 A genericsetup profile is provided to add ``jquery.dataTables`` to
 ``portal_javascript`` in a minified version with compression option set
 to *none*.
+
+Upgrade
+=========
+
+**WARNING**, with **10.0.4** JS, CSS from core plugins were all renamed in the upstream packaging,
+preprare to update your inclusions urls for plugins JS & CSS!
 
 Key features of jquery.dataTables
 =================================
@@ -51,14 +57,15 @@ Plugins
 
 This addon embed extras plugins:
 
-* AutoFill     1.1.2
-* ColReorder   1.0.5
-* ColVis       1.0.7
-* FixedColumns 2.0.3
-* FixedHeader  2.0.6
-* KeyTable     1.1.7
-* Scroller     1.0.1
-* TableTools   2.0.3
+* AutoFill     1.2.1
+* ColReorder   1.1.2
+* ColVis       1.1.1
+* FixedColumns 3.0.2
+* FixedHeader  2.1.2
+* KeyTable     1.2.1
+* Responsive   1.0.3
+* Scroller     1.2.2
+* TableTools   2.2.3
 
 How to use tabletools
 ---------------------
@@ -66,12 +73,11 @@ First include dependencies in your template, or register theses in
 portal_javascripts::
 
   <link rel="stylesheet" type="text/css" media="screen" href="++resource++jquery.datatables/media/css/jquery.dataTables.css">
-  <link rel="stylesheet" type="text/css" media="screen" href="++resource++jquery.datatables/extras/TableTools/media/css/TableTools.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="++resource++jquery.datatables/media/css/jquery.dataTables_themeroller.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="++resource++jquery.datatables/extras/TableTools/media/css/dataTables.tableTools.min.css">
   <script type="text/javascript" src="++resource++jquery.datatables.js"></script>
-  <script type="text/javascript" src="++resource++jquery.datatables/extras/TableTools/media/js/ZeroClipboard.js"></script>
-  <script type="text/javascript" src="++resource++jquery.datatables/extras/TableTools/media/js/TableTools.js"></script>
+  <script type="text/javascript" src="++resource++jquery.datatables/extras/TableTools/media/js/dataTables.TableTools.js"></script>
   <style type="text/css">.clear{clear:both}</style>
-
 
 Next you can create your datatable::
 
@@ -118,6 +124,7 @@ Contributors
 - Martijn Pieters
 - Luca Fabbri (keul)
 - Jens Klein (jensens)
+- Mathieu Le Marec - Pasquet (kiorky) <kiorky@cryptelium.net>
 
 .. |makinacom| image:: http://depot.makina-corpus.org/public/logo.gif
 .. _makinacom:  http://www.makina-corpus.com

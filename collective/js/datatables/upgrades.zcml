@@ -10,5 +10,11 @@
     destination="2000"
     handler=".upgrades.common"
     profile="collective.js.datatables:default"/>
-
+  <gs:upgradeStep
+    title="to 2001"
+    description="to 2001"
+    source="2000"
+    destination="2001"
+    handler=".upgrades.to2001"
+    profile="collective.js.datatables:default"/>
 </configure>

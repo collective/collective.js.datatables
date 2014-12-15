@@ -7,6 +7,7 @@
     i18n_domain="collective.js.datatables">
 
   <five:registerPackage package="." />
+  <include package=".example"/>
   <i18n:registerTranslations directory="locales" />
 
   <genericsetup:registerProfile
@@ -23,11 +24,11 @@
       file="resources/media/js/jquery.dataTables.min.js" />
 
   <browser:resource
-      name="jquery.datatables-1.9.js"
+      name="jquery.datatables-1.10.js"
       file="resources/media/js/jquery.dataTables.js" />
 
   <browser:resource
-      name="jquery.datatables-1.9.min.js"
+      name="jquery.datatables-1.10.min.js"
       file="resources/media/js/jquery.dataTables.min.js" />
 
   <browser:resourceDirectory
