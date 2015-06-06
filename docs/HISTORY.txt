@@ -4,7 +4,9 @@ Changelog
 3.1.10.5 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- Manually disable AMD loading. As long this isn't included in Mockup, it
+  doesn't work well with it.
+  [thet]
 
 
 3.1.10.4 (2015-01-29)
@@ -27,7 +29,7 @@ Changelog
 
 - refactor code to do more genric recursive dict-tree walking.[jensens]
 
-- Update German translation and use more genric word Einträge instaed of 
+- Update German translation and use more genric word Einträge instaed of
   Datensätze. [jensens]
 
 - upgrade DataTables to 1.9.4 [toutpt]
@@ -65,7 +67,7 @@ Changelog
 
 - Upgrade all plugins and add documentation about them
   [toutpt]
-  
+
 - Upgrade jquery.datatables to 1.9.1
   [toutpt]
 

@@ -29,7 +29,7 @@
 (function( factory ) {
 	"use strict";
 
-	if ( typeof define === 'function' && define.amd ) {
+/*	if ( typeof define === 'function' && define.amd ) {
 		// Define as an AMD module if possible
 		define( 'datatables', ['jquery'], factory );
 	}
@@ -40,8 +40,8 @@
 	else if ( jQuery && !jQuery.fn.dataTable ) {
 		// Define using browser globals otherwise
 		// Prevent multiple instantiations if the script is loaded twice
-		factory( jQuery );
-	}
+*/		factory( jQuery );
+//	}
 }
 (/** @lends <global> */function( $ ) {
 	"use strict";
