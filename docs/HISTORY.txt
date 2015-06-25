@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.1.10.5 (unreleased)
+3.1.10.5 (2015-06-25)
 ---------------------
 
 - Manually disable AMD loading. As long this isn't included in Mockup, it
