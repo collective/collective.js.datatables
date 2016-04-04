@@ -4,8 +4,9 @@ Changelog
 3.1.10.6 (unreleased)
 ---------------------
 
-- Nothing changed yet.
-
+- Basic plone 5 support. Split up profiles and register resources the way done
+  in https://github.com/collective/example.p4p5#cssjs-declaration-in-plone-5
+  [rnix]
 
 3.1.10.5 (2015-06-25)
 ---------------------
@@ -13,7 +14,6 @@ Changelog
 - Manually disable AMD loading. As long this isn't included in Mockup, it
   doesn't work well with it.
   [thet]
-
 
 3.1.10.4 (2015-01-29)
 ---------------------
@@ -46,7 +46,6 @@ Changelog
 - Add translations: de, nl, es, it [ebrehault]
 - upgrade DataTables to 1.9.3
 
-
 1.9.2.3 (2012-07-14)
 --------------------
 
@@ -54,19 +53,16 @@ Changelog
 - Add collective.js.datatables.translation view to use translations [toutpt]
 - Add italian translations [keul]
 
-
 1.9.2.2 (2012-06-22)
 --------------------
 
 - update to DataTables to 1.9.2
-
 
 1.9.2.1 (2012-04-25)
 --------------------
 
 - register css of datatable in cssregistry. [toutpt]
 - move example in splited module [toutpt]
-
 
 1.9.2 (2012-04-24)
 ------------------
