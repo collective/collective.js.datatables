@@ -31,6 +31,10 @@
 
   <browser:resource
     name="jquery.datatables.js"
+    file="resources/media/js/jquery.dataTables.js" />
+
+  <browser:resource
+    name="jquery.datatables.min.js"
     file="resources/media/js/jquery.dataTables.min.js" />
 
   <browser:resource
