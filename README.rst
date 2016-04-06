@@ -17,7 +17,7 @@ A genericsetup profile is provided to add ``jquery.dataTables`` to
 to *none*.
 
 Upgrade
-=========
+=======
 
 **WARNING**, with **10.0.4** JS, CSS from core plugins were all renamed in the upstream packaging,
 preprare to update your inclusions urls for plugins JS & CSS!
@@ -125,6 +125,7 @@ Contributors
 - Luca Fabbri (keul)
 - Jens Klein (jensens)
 - Mathieu Le Marec - Pasquet (kiorky) <kiorky@cryptelium.net>
+- Robert Niederreiter (rnix)
 
 .. |makinacom| image:: http://depot.makina-corpus.org/public/logo.gif
 .. _makinacom:  http://www.makina-corpus.com
