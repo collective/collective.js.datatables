@@ -17,3 +17,5 @@ lib/
 parts/
 dist/
 var/
+.Python
+pip-selfcheck.json
