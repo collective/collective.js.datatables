@@ -5,6 +5,7 @@ Changelog
 ------------------
 
 - Added Chinese Simplified translation. [jianaijun]
+- Update Datatables to 1.10.11, due to a XSS vulnerability in 1.10.4 (cve-2015-6384) [gemnasium]
 
 
 4.0.0 (2016-04-25)
