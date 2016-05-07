@@ -5,7 +5,7 @@ import os
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-version = '4.0.1.dev0'
+version = '4.1.1'
 
 setup(name='collective.js.datatables',
       version=version,
