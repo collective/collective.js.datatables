@@ -1,0 +1,63 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:five="http://namespaces.zope.org/five"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  xmlns:zcml="http://namespaces.zope.org/zcml"
+  i18n_domain="collective.js.datatables">
+
+  <five:registerPackage package="." />
+  <include package=".example"/>
+  <i18n:registerTranslations directory="locales" />
+
+  <genericsetup:registerProfile
+    zcml:condition="not-have plone-5"
+    name="default"
+    title="jQuery DataTables"
+    directory="profiles/plone4"
+    description="jQuery DataTables for Plone 4"
+    provides="Products.GenericSetup.interfaces.EXTENSION" />
+
+  <genericsetup:registerProfile
+    zcml:condition="have plone-5"
+    name="default"
+    title="jQuery DataTables"
+    directory="profiles/plone5"
+    description="jQuery DataTables for Plone 5"
+    provides="Products.GenericSetup.interfaces.EXTENSION" />
+
+  <include file="upgrades.zcml"/>
+
+  <browser:resource
+    name="jquery.datatables.js"
+    file="resources/media/js/jquery.dataTables.js" />
+
+  <browser:resource
+    name="jquery.datatables.min.js"
+    file="resources/media/js/jquery.dataTables.min.js" />
+
+  <browser:resource
+    name="jquery.datatables-1.10.js"
+    file="resources/media/js/jquery.dataTables.js" />
+
+  <browser:resource
+    name="jquery.datatables-1.10.min.js"
+    file="resources/media/js/jquery.dataTables.min.js" />
+
+  <browser:resourceDirectory
+    name="jquery.datatables"
+    directory="resources" />
+
+  <browser:page
+    for="*"
+    name="collective.js.datatables.translation"
+    class=".surl.Translations"
+    permission="zope2.View" />
+
+  <!-- compatibility with esteele version -->
+  <browser:resourceDirectory
+    name="datatables"
+    directory="resources/media" />
+
+</configure>
