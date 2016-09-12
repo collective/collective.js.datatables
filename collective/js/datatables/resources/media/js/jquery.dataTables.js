@@ -1,3 +1,4 @@
+var orig_define, define; orig_define = define; define = undefined;
 /*! DataTables 1.10.11
  * ©2008-2015 SpryMedia Ltd - datatables.net/license
  */
@@ -407,3 +408,4 @@
 
 	return $.fn.dataTable;
 }));
+define = orig_define;

@@ -4,7 +4,9 @@ Changelog
 4.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Manually disable AMD loading. As long this isn't included in Mockup, it doesn't work well with it.
+  Provide a script amdfix.sh for future patching.
+  [thet]
 
 
 4.1.1 (2016-05-07)
