@@ -126,6 +126,7 @@ Contributors
 - Jens Klein (jensens)
 - Mathieu Le Marec - Pasquet (kiorky) <kiorky@cryptelium.net>
 - Robert Niederreiter (rnix)
+- Peter Holzer (agitator)
 
 .. |makinacom| image:: http://depot.makina-corpus.org/public/logo.gif
 .. _makinacom:  http://www.makina-corpus.com
