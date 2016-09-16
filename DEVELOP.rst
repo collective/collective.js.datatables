@@ -8,12 +8,13 @@ To use DataTables with Plone you have to add these undefine/define snippets befo
 Snippet
 -------
 
-old_define = define;
-define = undefined;
-old_require = require;
-require = undefined;
+::
+    old_define = define;
+    define = undefined;
+    old_require = require;
+    require = undefined;
 
-[jquery.dataTables.min.js]
+    [jquery.dataTables.min.js]
 
-define = old_define;
-require = old_require;
+    define = old_define;
+    require = old_require;
