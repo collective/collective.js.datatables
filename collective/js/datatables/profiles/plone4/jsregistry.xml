@@ -2,5 +2,5 @@
 <object name="portal_javascripts" meta_type="JavaScripts Registry">
  <javascript cacheable="True" compression="none"
      cookable="True" enabled="1" expression=""
-     id="++resource++jquery.datatables.js" />
+     id="++resource++jquery.datatables.min.js" />
 </object>
