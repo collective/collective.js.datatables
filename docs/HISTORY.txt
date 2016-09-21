@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.1.2 (unreleased)
+4.1.2 (2016-09-21)
 ------------------
 
 - Use minified version with added require.js packaging workaround
