@@ -12,6 +12,8 @@ Changelog
 - updated Responsive-2.1.0
 - updated Scroller-1.4.2
   [petri]
+- added Buttons-1.2.2, Select-1.2.0 and RowReorder-1.1.2 
+  [petri]
 
 4.1.2 (2016-09-21)
 ------------------
