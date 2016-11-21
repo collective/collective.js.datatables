@@ -57,15 +57,21 @@ Plugins
 
 This addon embed extras plugins:
 
-* AutoFill     1.2.1
-* ColReorder   1.1.2
-* ColVis       1.1.1
-* FixedColumns 3.0.2
-* FixedHeader  2.1.2
-* KeyTable     1.2.1
-* Responsive   1.0.3
-* Scroller     1.2.2
-* TableTools   2.2.3
+* AutoFill-2.1.2
+* ColReorder-1.3.2
+* FixedColumns-3.2.2
+* FixedHeader-3.1.2
+* KeyTable-2.1.3
+* Responsive-2.1.0
+* Scroller-1.4.2
+
+New extras in this release:
+
+* Buttons-1.2.2
+* Select-1.2.0
+* RowReorder-1.1.2
+
+The TableTools extra has been deprecated.
 
 How to use tabletools
 ---------------------
