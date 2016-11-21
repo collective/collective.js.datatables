@@ -4,53 +4,65 @@
 	<meta charset="utf-8">
 	<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
-
-	<title>FixedHeader example - Basic initialisation</title>
-	<link rel="stylesheet" type="text/css" href="../../../media/css/jquery.dataTables.css">
-	<link rel="stylesheet" type="text/css" href="../css/dataTables.fixedHeader.css">
-	<link rel="stylesheet" type="text/css" href="../../../examples/resources/syntax/shCore.css">
-	<link rel="stylesheet" type="text/css" href="../../../examples/resources/demo.css">
+	<title>FixedHeader example - Enable / disable FixedHeader</title>
+	<link rel="stylesheet" type="text/css" href="../../../../media/css/jquery.dataTables.css">
+	<link rel="stylesheet" type="text/css" href="../../css/fixedHeader.dataTables.css">
+	<link rel="stylesheet" type="text/css" href="../../../../examples/resources/syntax/shCore.css">
+	<link rel="stylesheet" type="text/css" href="../../../../examples/resources/demo.css">
 	<style type="text/css" class="init">
+	
+	#float {
+		position: fixed;
+		top: 3em;
+		right: 2em;
+		z-index: 100;
+	}
 
 	</style>
-	<script type="text/javascript" language="javascript" src="../../../media/js/jquery.js"></script>
-	<script type="text/javascript" language="javascript" src="../../../media/js/jquery.dataTables.js"></script>
-	<script type="text/javascript" language="javascript" src="../js/dataTables.fixedHeader.js"></script>
-	<script type="text/javascript" language="javascript" src="../../../examples/resources/syntax/shCore.js"></script>
-	<script type="text/javascript" language="javascript" src="../../../examples/resources/demo.js"></script>
+	<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.3.min.js">
+	</script>
+	<script type="text/javascript" language="javascript" src="../../../../media/js/jquery.dataTables.js">
+	</script>
+	<script type="text/javascript" language="javascript" src="../../js/dataTables.fixedHeader.js">
+	</script>
+	<script type="text/javascript" language="javascript" src="../../../../examples/resources/syntax/shCore.js">
+	</script>
+	<script type="text/javascript" language="javascript" src="../../../../examples/resources/demo.js">
+	</script>
 	<script type="text/javascript" language="javascript" class="init">
-
+	
 
 $(document).ready(function() {
-	var table = $('#example').DataTable();
+	var table = $('#example').DataTable( {
+		fixedHeader: true
+	} );
 
-	new $.fn.dataTable.FixedHeader( table );
+	$('#enable').on( 'click', function () {
+		table.fixedHeader.enable();
+	} );
+
+	$('#disable').on( 'click', function () {
+		table.fixedHeader.disable();
+	} );
 } );
 
 
 	</script>
 </head>
-
 <body class="dt-example">
 	<div class="container">
 		<section>
-			<h1>FixedHeader example <span>Basic initialisation</span></h1>
-
+			<h1>FixedHeader example <span>Enable / disable FixedHeader</span></h1>
 			<div class="info">
-				<p>When displaying large amounts of data in a table, it can often be useful for the end user to have
-				the column titles (the <code class="tag" title="HTML tag">thead</code> element as a whole in fact)
-				always visible. This is particularly true if using DataTables with pagination disabled, or the display
-				length is set to a high value.</p>
-
-				<p>The FixedHeader extension for DataTables will ensure that your column titles will scroll with the
-				page, showing at the top of the table at all times. Try the demo shown below - you might want to try
-				resizing the window for full effect! Note also that the column titles remain clickable to perform
-				sorting on the table.</p>
-
-				<p>FixedHeader is initialised using the constructor <code>new $.fn.dataTable.FixedHeader();</code> -
-				shown below.</p>
+				<p>This example shows how FixedHeader can be enabled and disabled for a table using the <a href="//datatables.net/reference/api/fixedHeader.enable()"><code class=
+				"api" title="FixedHeader API method">fixedHeader.enable()</code></a> and <a href="//datatables.net/reference/api/fixedHeader.disable()"><code class="api" title=
+				"FixedHeader API method">fixedHeader.disable()</code></a> API methods. This can be useful if you want to dynamically control the behaviour of the fixed
+				elements.</p>
+				<p>This example demonstrates this ability using two floating buttons (top right) which you can click to enable and disable the fixed header.</p>
 			</div>
-
+			<div id="float">
+				<button id="enable">Enable FixedHeader</button> <button id="disable">Disable FixedHeader</button>
+			</div>
 			<table id="example" class="display" cellspacing="0" width="100%">
 				<thead>
 					<tr>
@@ -62,7 +74,6 @@ $(document).ready(function() {
 						<th>Salary</th>
 					</tr>
 				</thead>
-
 				<tfoot>
 					<tr>
 						<th>Name</th>
@@ -73,7 +84,6 @@ $(document).ready(function() {
 						<th>Salary</th>
 					</tr>
 				</tfoot>
-
 				<tbody>
 					<tr>
 						<td>Tiger Nixon</td>
@@ -533,7 +543,6 @@ $(document).ready(function() {
 					</tr>
 				</tbody>
 			</table>
-
 			<ul class="tabs">
 				<li class="active">Javascript</li>
 				<li>HTML</li>
@@ -541,93 +550,150 @@ $(document).ready(function() {
 				<li>Ajax</li>
 				<li>Server-side script</li>
 			</ul>
-
 			<div class="tabs">
 				<div class="js">
-					<p>The Javascript shown below is used to initialise the table shown in this
-					example:</p><code class="multiline brush: js;">$(document).ready(function() {
-	var table = $('#example').DataTable();
+					<p>The Javascript shown below is used to initialise the table shown in this example:</p><code class="multiline language-js">$(document).ready(function() {
+	var table = $('#example').DataTable( {
+		fixedHeader: true
+	} );
 
-	new $.fn.dataTable.FixedHeader( table );
+	$('#enable').on( 'click', function () {
+		table.fixedHeader.enable();
+	} );
+
+	$('#disable').on( 'click', function () {
+		table.fixedHeader.disable();
+	} );
 } );</code>
-
-					<p>In addition to the above code, the following Javascript library files are loaded for use in this
-					example:</p>
-
+					<p>In addition to the above code, the following Javascript library files are loaded for use in this example:</p>
 					<ul>
-						<li><a href="../../../media/js/jquery.js">../../../media/js/jquery.js</a></li>
-						<li><a href=
-						"../../../media/js/jquery.dataTables.js">../../../media/js/jquery.dataTables.js</a></li>
-						<li><a href="../js/dataTables.fixedHeader.js">../js/dataTables.fixedHeader.js</a></li>
+						<li>
+							<a href="//code.jquery.com/jquery-1.12.3.min.js">//code.jquery.com/jquery-1.12.3.min.js</a>
+						</li>
+						<li>
+							<a href="../../../../media/js/jquery.dataTables.js">../../../../media/js/jquery.dataTables.js</a>
+						</li>
+						<li>
+							<a href="../../js/dataTables.fixedHeader.js">../../js/dataTables.fixedHeader.js</a>
+						</li>
 					</ul>
 				</div>
-
 				<div class="table">
-					<p>The HTML shown below is the raw HTML table element, before it has been enhanced by
-					DataTables:</p>
+					<p>The HTML shown below is the raw HTML table element, before it has been enhanced by DataTables:</p>
 				</div>
-
 				<div class="css">
 					<div>
-						<p>This example uses a little bit of additional CSS beyond what is loaded from the library
-						files (below), in order to correctly display the table. The additional CSS used is shown
-						below:</p><code class="multiline brush: js;"></code>
+						<p>This example uses a little bit of additional CSS beyond what is loaded from the library files (below), in order to correctly display the table. The
+						additional CSS used is shown below:</p><code class="multiline language-css">#float {
+		position: fixed;
+		top: 3em;
+		right: 2em;
+		z-index: 100;
+	}</code>
 					</div>
-
-					<p>The following CSS library files are loaded for use in this example to provide the styling of the
-					table:</p>
-
+					<p>The following CSS library files are loaded for use in this example to provide the styling of the table:</p>
 					<ul>
-						<li><a href=
-						"../../../media/css/jquery.dataTables.css">../../../media/css/jquery.dataTables.css</a></li>
-						<li><a href="../css/dataTables.fixedHeader.css">../css/dataTables.fixedHeader.css</a></li>
+						<li>
+							<a href="../../../../media/css/jquery.dataTables.css">../../../../media/css/jquery.dataTables.css</a>
+						</li>
+						<li>
+							<a href="../../css/fixedHeader.dataTables.css">../../css/fixedHeader.dataTables.css</a>
+						</li>
 					</ul>
 				</div>
-
 				<div class="ajax">
-					<p>This table loads data by Ajax. The latest data that has been loaded is shown below. This data
-					will update automatically as any additional data is loaded.</p>
+					<p>This table loads data by Ajax. The latest data that has been loaded is shown below. This data will update automatically as any additional data is
+					loaded.</p>
 				</div>
-
 				<div class="php">
-					<p>The script used to perform the server-side processing for this table is shown below. Please note
-					that this is just an example script using PHP. Server-side processing scripts can be written in any
-					language, using <a href="//datatables.net/manual/server-side">the protocol described in the
-					DataTables documentation</a>.</p>
+					<p>The script used to perform the server-side processing for this table is shown below. Please note that this is just an example script using PHP. Server-side
+					processing scripts can be written in any language, using <a href="//datatables.net/manual/server-side">the protocol described in the DataTables
+					documentation</a>.</p>
 				</div>
 			</div>
 		</section>
 	</div>
-
 	<section>
 		<div class="footer">
 			<div class="gradient"></div>
-
 			<div class="liner">
 				<h2>Other examples</h2>
-
 				<div class="toc">
 					<div class="toc-group">
-						<h3><a href="./index.html">Examples</a></h3>
+						<h3><a href="./index.html">Initialisation and options</a></h3>
 						<ul class="toc active">
-							<li class="active"><a href="./simple.html">Basic initialisation</a></li>
-							<li><a href="./header_footer.html">Header and footer fixed</a></li>
-							<li><a href="./top_left_right.html">Header, left and right all fixed</a></li>
-							<li><a href="./two_tables.html">Multiple tables</a></li>
-							<li><a href="./zIndexes.html">z-index order control</a></li>
+							<li>
+								<a href="./simple.html">Basic initialisation</a>
+							</li>
+							<li>
+								<a href="./header_footer.html">Header and footer fixed</a>
+							</li>
+							<li>
+								<a href="./two_tables.html">Multiple tables</a>
+							</li>
+							<li>
+								<a href="./offset-automatic.html">Offset - automatic</a>
+							</li>
+							<li>
+								<a href="./offset.html">Offset - manual</a>
+							</li>
+							<li>
+								<a href="./horizontal-scroll.html">Horizontal page scrolling</a>
+							</li>
+							<li class="active">
+								<a href="./enable-disable.html">Enable / disable FixedHeader</a>
+							</li>
+							<li>
+								<a href="./show-hide.html">Show / hide FixedHeader</a>
+							</li>
+							<li>
+								<a href="./new.html">Alternative initialisation</a>
+							</li>
+						</ul>
+					</div>
+					<div class="toc-group">
+						<h3><a href="../styling/index.html">Styling</a></h3>
+						<ul class="toc">
+							<li>
+								<a href="../styling/bootstrap.html">Bootstrap</a>
+							</li>
+							<li>
+								<a href="../styling/bootstrap4.html">Bootstrap 4</a>
+							</li>
+							<li>
+								<a href="../styling/foundation.html">Foundation</a>
+							</li>
+							<li>
+								<a href="../styling/semanticui.html">Semantic UI</a>
+							</li>
+							<li>
+								<a href="../styling/jqueryui.html">jQuery UI styling</a>
+							</li>
+						</ul>
+					</div>
+					<div class="toc-group">
+						<h3><a href="../integration/index.html">Integration with other DataTables extensions</a></h3>
+						<ul class="toc">
+							<li>
+								<a href="../integration/responsive.html">Responsive integration</a>
+							</li>
+							<li>
+								<a href="../integration/responsive-bootstrap.html">Responsive integration (Bootstrap)</a>
+							</li>
+							<li>
+								<a href="../integration/colreorder.html">ColReorder integration</a>
+							</li>
+							<li>
+								<a href="../integration/buttons.html">Buttons columns visibility integration</a>
+							</li>
 						</ul>
 					</div>
 				</div>
-
 				<div class="epilogue">
-					<p>Please refer to the <a href="http://www.datatables.net">DataTables documentation</a> for full
-					information about its API properties and methods.<br>
-					Additionally, there are a wide range of <a href="http://www.datatables.net/extras">extras</a> and
-					<a href="http://www.datatables.net/plug-ins">plug-ins</a> which extend the capabilities of
-					DataTables.</p>
-
-					<p class="copyright">DataTables designed and created by <a href=
-					"http://www.sprymedia.co.uk">SpryMedia Ltd</a> &#169; 2007-2014<br>
+					<p>Please refer to the <a href="http://www.datatables.net">DataTables documentation</a> for full information about its API properties and methods.<br>
+					Additionally, there are a wide range of <a href="http://www.datatables.net/extensions">extensions</a> and <a href=
+					"http://www.datatables.net/plug-ins">plug-ins</a> which extend the capabilities of DataTables.</p>
+					<p class="copyright">DataTables designed and created by <a href="http://www.sprymedia.co.uk">SpryMedia Ltd</a> © 2007-2016<br>
 					DataTables is licensed under the <a href="http://www.datatables.net/mit">MIT license</a>.</p>
 				</div>
 			</div>
