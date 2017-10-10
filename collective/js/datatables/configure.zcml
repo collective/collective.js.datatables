@@ -60,4 +60,6 @@
     name="datatables"
     directory="resources/media" />
 
+  <include file="buttons.zcml"/>
+
 </configure>
