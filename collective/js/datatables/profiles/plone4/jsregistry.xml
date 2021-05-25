@@ -2,5 +2,6 @@
 <object name="portal_javascripts" meta_type="JavaScripts Registry">
  <javascript cacheable="True" compression="none"
      cookable="True" enabled="1" expression=""
+     insert-after="++resource++plone.app.jquery.js"
      id="++resource++jquery.datatables.min.js" />
 </object>
