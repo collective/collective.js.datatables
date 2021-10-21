@@ -109,8 +109,8 @@ Companies
 
 |makinacom|_
 
-* `Planet Makina Corpus <http://www.makina-corpus.org>`_
-* `Contact us <mailto:python@makina-corpus.org>`_
+* `Planet Makina Corpus <https://makina-corpus.com/>`_
+* `Contact us <https://makina-corpus.com/contact>`_
 
 Authors
 -------
