@@ -128,9 +128,9 @@ Contributors
 - Robert Niederreiter (rnix)
 - Peter Holzer (agitator)
 
-.. |makinacom| image:: http://depot.makina-corpus.org/public/logo.gif
-.. _makinacom:  http://www.makina-corpus.com
-.. _DataTables: http://www.datatables.net/download
+.. |makinacom| image:: https://depot.makina-corpus.org/public/logo.gif
+.. _makinacom:  https://makina-corpus.com/
+.. _DataTables: https://www.datatables.net/download/
 .. _github: https://github.com/DataTables
-.. _jQuery: http://jquery.com
+.. _jQuery: https://jquery.com/
 
