@@ -21,3 +21,5 @@ var/
 pip-selfcheck.json
 lib64
 pyvenv.cfg
+.mr.developer.cfg
+.plone.versioncheck.tracked.json

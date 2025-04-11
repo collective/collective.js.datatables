@@ -87,17 +87,19 @@ portal_javascripts::
 
 Next you can create your datatable::
 
+```javascript
   var oTable = $('#mydatatable').dataTable({
     "sDom": 'T<"clear">lfrtip',
     "oTableTools": {"sSwfPath": "++resource++jquery.datatables/extras/TableTools/media/swf/copy_csv_xls_pdf.swf"}
   });
-
+```
 
 ## How to use translations
 
 This addon provide translations of datatables. To use translations you have
 to init your datatables providing sUrl param::
 
+```javascript
   $(document).ready(function() {
     $('#example').dataTable( {
         "oLanguage": {
@@ -105,13 +107,12 @@ to init your datatables providing sUrl param::
         }
     } );
   } );
+```
 
 
 # Credits
 
 ## Companies
-
-|makinacom|_
 
 * `Planet Makina Corpus <https://makina-corpus.com/>`_
 * `Contact us <https://makina-corpus.com/contact>`_
@@ -133,11 +134,3 @@ to init your datatables providing sUrl param::
 - Peter Holzer (agitator)
 - Benoît Suttor (bsuttor)
 - Rémi Dubois (remdub)
-
-
-.. |makinacom| image:: https://depot.makina-corpus.org/public/logo.gif
-.. _makinacom:  https://makina-corpus.com/
-.. _DataTables: https://www.datatables.net/download/
-.. _github: https://github.com/DataTables
-.. _jQuery: https://jquery.com/
-
