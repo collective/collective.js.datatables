@@ -1,5 +1,5 @@
 import transaction
-import unittest2 as unittest
+import unittest
 from zope import interface
 from plone.app import testing
 from collective.js.datatables import testing as layer

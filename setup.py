@@ -21,6 +21,7 @@ setup(name='collective.js.datatables',
         "Framework :: Plone :: 4.3",
         "Framework :: Plone :: 5.0",
         "Framework :: Plone :: 5.1",
+        "Framework :: Plone :: 6.1",
         "Programming Language :: Python",
         ],
       keywords='',
@@ -37,7 +38,7 @@ setup(name='collective.js.datatables',
           # -*- Extra requirements: -*-
       ],
       extras_require = dict(
-          test=['plone.app.testing'],
+          test=['plone.app.testing', 'pytest', 'pytest-plone','plone.app.robotframework[debug]',],
       ),
       entry_points="""
       # -*- Entry points: -*-

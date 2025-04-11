@@ -12,19 +12,17 @@
   <i18n:registerTranslations directory="locales" />
 
   <genericsetup:registerProfile
-    zcml:condition="not-have plone-5"
     name="default"
     title="jQuery DataTables"
-    directory="profiles/plone4"
-    description="jQuery DataTables for Plone 4"
+    directory="profiles/default"
+    description="jQuery DataTables"
     provides="Products.GenericSetup.interfaces.EXTENSION" />
 
   <genericsetup:registerProfile
-    zcml:condition="have plone-5"
-    name="default"
+    name="uninstall"
     title="jQuery DataTables"
-    directory="profiles/plone5"
-    description="jQuery DataTables for Plone 5"
+    directory="profiles/uninstall"
+    description="jQuery DataTables (uninstall)"
     provides="Products.GenericSetup.interfaces.EXTENSION" />
 
   <include file="upgrades.zcml"/>
