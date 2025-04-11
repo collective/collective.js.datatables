@@ -1,2 +1,4 @@
-setuptools==19.0
-zc.buildout==2.5.0
+-c https://dist.plone.org/release/6.1-latest/requirements.txt
+setuptools==75.8.2
+wheel==0.45.1
+zc.buildout==4.1.4

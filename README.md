@@ -1,5 +1,4 @@
-Introduction
-============
+# Introduction
 
 DataTables_ is a plug-in for the jQuery_ Javascript library.
 It is a highly flexible tool, based upon the principle of progressive
@@ -9,21 +8,27 @@ This version includes datatables 1.10.11 without the examples available in the
 source distribution of the plugin. It is provided with an
 ``@@example.datatables`` view.
 
-Install
-=======
+
+# Old versions
+
+Branch master is maintained for Plone 6.
+Branch 4.x is used to support Plone version < 6.
+
+
+# Install
 
 A genericsetup profile is provided to add ``jquery.dataTables`` to
 ``portal_javascript`` in a minified version with compression option set
 to *none*.
 
-Upgrade
-=======
+
+# Upgrade
 
 **WARNING**, with **10.0.4** JS, CSS from core plugins were all renamed in the upstream packaging,
 preprare to update your inclusions urls for plugins JS & CSS!
 
-Key features of jquery.dataTables
-=================================
+
+# Key features of jquery.dataTables
 
 * Variable-length pagination
 * On-the-fly filtering
@@ -52,8 +57,8 @@ Key features of jquery.dataTables
 * Full support for Adobe AIR
 * Source available at github_
 
-Plugins
-=======
+
+# Plugins
 
 This addon embed extras plugins:
 
@@ -67,8 +72,9 @@ This addon embed extras plugins:
 * Scroller     1.2.2
 * TableTools   2.2.3
 
-How to use tabletools
----------------------
+
+## How to use tabletools
+
 First include dependencies in your template, or register theses in
 portal_javascripts::
 
@@ -86,8 +92,8 @@ Next you can create your datatable::
     "oTableTools": {"sSwfPath": "++resource++jquery.datatables/extras/TableTools/media/swf/copy_csv_xls_pdf.swf"}
   });
 
-How to use translations
------------------------
+
+## How to use translations
 
 This addon provide translations of datatables. To use translations you have
 to init your datatables providing sUrl param::
@@ -101,24 +107,22 @@ to init your datatables providing sUrl param::
   } );
 
 
-Credits
-=======
+# Credits
 
-Companies
----------
+## Companies
 
 |makinacom|_
 
 * `Planet Makina Corpus <https://makina-corpus.com/>`_
 * `Contact us <https://makina-corpus.com/contact>`_
 
-Authors
--------
+
+## Authors
 
 - JeanMichel FRANCOIS aka toutpt <toutpt@gmail.com>
 
-Contributors
-------------
+
+## Contributors
 
 - Nejc Zupan (zupo)
 - Martijn Pieters
@@ -127,6 +131,9 @@ Contributors
 - Mathieu Le Marec - Pasquet (kiorky) <kiorky@cryptelium.net>
 - Robert Niederreiter (rnix)
 - Peter Holzer (agitator)
+- Benoît Suttor (bsuttor)
+- Rémi Dubois (remdub)
+
 
 .. |makinacom| image:: https://depot.makina-corpus.org/public/logo.gif
 .. _makinacom:  https://makina-corpus.com/

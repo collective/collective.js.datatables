@@ -19,3 +19,5 @@ dist/
 var/
 .Python
 pip-selfcheck.json
+lib64
+pyvenv.cfg
