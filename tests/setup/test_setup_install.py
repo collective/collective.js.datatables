@@ -19,4 +19,4 @@ class TestSetupInstall:
     def test_cssregistry(self, portal):
         datatable = api.portal.get_registry_record("plone.bundles/datatables.enabled")
         assert datatable is True
-        assert "++resource++jquery.datatables/media/css/jquery.dataTables.css" in api.portal.get().view()
+        assert "++resource++jquery.datatables/media/css/jquery.dataTables.min.css" in api.portal.get().view()

@@ -21,4 +21,4 @@ class TestSetupUninstall:
     def test_cssregistry(self, portal):
         datatable = api.portal.get_registry_record("plone.bundles/datatables.enabled", default=False)
         assert datatable is False
-        assert "++resource++jquery.datatables/media/css/jquery.dataTables.css" not in api.portal.get().view()
+        assert "++resource++jquery.datatables/media/css/jquery.dataTables.min.css" not in api.portal.get().view()
