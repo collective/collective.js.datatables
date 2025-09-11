@@ -23,3 +23,5 @@ lib64
 pyvenv.cfg
 .mr.developer.cfg
 .plone.versioncheck.tracked.json
+constraints-mxdev.txt
+requirements-mxdev.txt
