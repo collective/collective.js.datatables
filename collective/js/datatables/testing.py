@@ -1,17 +1,46 @@
-from plone.testing import z2
+from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
+from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
+from plone.app.testing import applyProfile
+from plone.app.testing import FunctionalTesting
+from plone.app.testing import IntegrationTesting
+from plone.app.testing import PloneSandboxLayer
+from plone.testing.zope import WSGI_SERVER_FIXTURE
 
-from plone.app.testing import *
-import collective.js.datatables
+import collective.js.datatables  # noQA
 
-FIXTURE = PloneWithPackageLayer(zcml_filename="configure.zcml",
-                                zcml_package=collective.js.datatables,
-                                additional_z2_products=[],
-                                gs_profile_id='collective.js.datatables:default',
-                                name="collective.js.datatables:FIXTURE")
 
-INTEGRATION = IntegrationTesting(bases=(FIXTURE,),
-                        name="collective.js.datatables:Integration")
+class Layer(PloneSandboxLayer):
+    defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE,)
 
-FUNCTIONAL = FunctionalTesting(bases=(FIXTURE,),
-                        name="collective.js.datatables:Functional")
+    def setUpZope(self, app, configurationContext):
+        # Load any other ZCML that is required for your tests.
+        # The z3c.autoinclude feature is disabled in the Plone fixture base
+        # layer.
+        self.loadZCML(package=collective.js.datatables)
 
+    def setUpPloneSite(self, portal):
+        applyProfile(portal, "collective.js.datatables:default")
+
+
+FIXTURE = Layer()
+
+INTEGRATION_TESTING = IntegrationTesting(
+    bases=(FIXTURE,),
+    name="collective.js.datatablesLayer:IntegrationTesting",
+)
+
+
+FUNCTIONAL_TESTING = FunctionalTesting(
+    bases=(FIXTURE, WSGI_SERVER_FIXTURE),
+    name="collective.js.datatablesLayer:FunctionalTesting",
+)
+
+
+ACCEPTANCE_TESTING = FunctionalTesting(
+    bases=(
+        FIXTURE,
+        REMOTE_LIBRARY_BUNDLE_FIXTURE,
+        WSGI_SERVER_FIXTURE,
+    ),
+    name="collective.js.datatablesLayer:AcceptanceTesting",
+)

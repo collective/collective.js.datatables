@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<registry>
+
+  <records prefix="plone.bundles/datatables"
+           interface='Products.CMFPlone.interfaces.IBundleRegistry' remove="True" />
+</registry>

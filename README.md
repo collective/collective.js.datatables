@@ -1,5 +1,4 @@
-Introduction
-============
+# Introduction
 
 DataTables_ is a plug-in for the jQuery_ Javascript library.
 It is a highly flexible tool, based upon the principle of progressive
@@ -9,21 +8,26 @@ This version includes datatables 1.10.11 without the examples available in the
 source distribution of the plugin. It is provided with an
 ``@@example.datatables`` view.
 
-Install
-=======
 
-A genericsetup profile is provided to add ``jquery.dataTables`` to
-``portal_javascript`` in a minified version with compression option set
-to *none*.
+# Old versions
 
-Upgrade
-=======
+Branch master is maintained for Plone 6.
+Branch 4.x is used to support Plone version < 6.
+
+
+# Install
+
+A genericsetup profile is provided to add ``jquery.dataTables`` to resources
+registry in a minified version.
+
+
+# Upgrade
 
 **WARNING**, with **10.0.4** JS, CSS from core plugins were all renamed in the upstream packaging,
 preprare to update your inclusions urls for plugins JS & CSS!
 
-Key features of jquery.dataTables
-=================================
+
+# Key features of jquery.dataTables
 
 * Variable-length pagination
 * On-the-fly filtering
@@ -52,8 +56,8 @@ Key features of jquery.dataTables
 * Full support for Adobe AIR
 * Source available at github_
 
-Plugins
-=======
+
+# Plugins
 
 This addon embed extras plugins:
 
@@ -67,31 +71,35 @@ This addon embed extras plugins:
 * Scroller     1.2.2
 * TableTools   2.2.3
 
-How to use tabletools
----------------------
-First include dependencies in your template, or register theses in
-portal_javascripts::
 
+## How to use tabletools
+
+First include dependencies in your template, or register theses in resources registry:
+
+```html
   <link rel="stylesheet" type="text/css" media="screen" href="++resource++jquery.datatables/media/css/jquery.dataTables.css">
   <link rel="stylesheet" type="text/css" media="screen" href="++resource++jquery.datatables/media/css/jquery.dataTables_themeroller.css">
   <link rel="stylesheet" type="text/css" media="screen" href="++resource++jquery.datatables/extras/TableTools/media/css/dataTables.tableTools.min.css">
   <script type="text/javascript" src="++resource++jquery.datatables.js"></script>
   <script type="text/javascript" src="++resource++jquery.datatables/extras/TableTools/media/js/dataTables.TableTools.js"></script>
   <style type="text/css">.clear{clear:both}</style>
+```
 
-Next you can create your datatable::
+Next you can create your datatable:
 
+```javascript
   var oTable = $('#mydatatable').dataTable({
     "sDom": 'T<"clear">lfrtip',
     "oTableTools": {"sSwfPath": "++resource++jquery.datatables/extras/TableTools/media/swf/copy_csv_xls_pdf.swf"}
   });
+```
 
-How to use translations
------------------------
+## How to use translations
 
 This addon provide translations of datatables. To use translations you have
-to init your datatables providing sUrl param::
+to init your datatables providing sUrl param:
 
+```javascript
   $(document).ready(function() {
     $('#example').dataTable( {
         "oLanguage": {
@@ -99,26 +107,23 @@ to init your datatables providing sUrl param::
         }
     } );
   } );
+```
 
 
-Credits
-=======
+# Credits
 
-Companies
----------
-
-|makinacom|_
+## Companies
 
 * `Planet Makina Corpus <https://makina-corpus.com/>`_
 * `Contact us <https://makina-corpus.com/contact>`_
 
-Authors
--------
+
+## Authors
 
 - JeanMichel FRANCOIS aka toutpt <toutpt@gmail.com>
 
-Contributors
-------------
+
+## Contributors
 
 - Nejc Zupan (zupo)
 - Martijn Pieters
@@ -127,10 +132,5 @@ Contributors
 - Mathieu Le Marec - Pasquet (kiorky) <kiorky@cryptelium.net>
 - Robert Niederreiter (rnix)
 - Peter Holzer (agitator)
-
-.. |makinacom| image:: https://depot.makina-corpus.org/public/logo.gif
-.. _makinacom:  https://makina-corpus.com/
-.. _DataTables: https://www.datatables.net/download/
-.. _github: https://github.com/DataTables
-.. _jQuery: https://jquery.com/
-
+- Benoît Suttor (bsuttor)
+- Rémi Dubois (remdub)

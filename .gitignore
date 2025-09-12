@@ -19,3 +19,12 @@ dist/
 var/
 .Python
 pip-selfcheck.json
+lib64
+pyvenv.cfg
+.mr.developer.cfg
+.plone.versioncheck.tracked.json
+constraints-mxdev.txt
+requirements-mxdev.txt
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore

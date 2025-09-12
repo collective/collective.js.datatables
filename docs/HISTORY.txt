@@ -1,6 +1,19 @@
 Changelog
 =========
 
+5.0.0 (unreleased)
+------------------
+
+- Clean up and migrate plugin to Plone 6.1
+ [bsuttor, remdub]
+
+- Drop support and compatibility of Python < 3.10 and Plone < 6.1. Use branch 4.x for bug fixes of old versions.
+ [bsuttor, remdub]
+
+- Migrate to pytest
+ [remdub]
+
+
 4.1.3 (unreleased)
 ------------------
 
