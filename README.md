@@ -17,9 +17,8 @@ Branch 4.x is used to support Plone version < 6.
 
 # Install
 
-A genericsetup profile is provided to add ``jquery.dataTables`` to
-``portal_javascript`` in a minified version with compression option set
-to *none*.
+A genericsetup profile is provided to add ``jquery.dataTables`` to resources
+registry in a minified version.
 
 
 # Upgrade
@@ -75,17 +74,18 @@ This addon embed extras plugins:
 
 ## How to use tabletools
 
-First include dependencies in your template, or register theses in
-portal_javascripts::
+First include dependencies in your template, or register theses in resources registry:
 
+```html
   <link rel="stylesheet" type="text/css" media="screen" href="++resource++jquery.datatables/media/css/jquery.dataTables.css">
   <link rel="stylesheet" type="text/css" media="screen" href="++resource++jquery.datatables/media/css/jquery.dataTables_themeroller.css">
   <link rel="stylesheet" type="text/css" media="screen" href="++resource++jquery.datatables/extras/TableTools/media/css/dataTables.tableTools.min.css">
   <script type="text/javascript" src="++resource++jquery.datatables.js"></script>
   <script type="text/javascript" src="++resource++jquery.datatables/extras/TableTools/media/js/dataTables.TableTools.js"></script>
   <style type="text/css">.clear{clear:both}</style>
+```
 
-Next you can create your datatable::
+Next you can create your datatable:
 
 ```javascript
   var oTable = $('#mydatatable').dataTable({
@@ -97,7 +97,7 @@ Next you can create your datatable::
 ## How to use translations
 
 This addon provide translations of datatables. To use translations you have
-to init your datatables providing sUrl param::
+to init your datatables providing sUrl param:
 
 ```javascript
   $(document).ready(function() {
