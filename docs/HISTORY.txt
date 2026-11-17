@@ -13,6 +13,8 @@ Changelog
 - Migrate to pytest
  [remdub]
 
+- Switched to PEP 420 native namespace packages. [chris-adam]
+
 
 4.1.3 (unreleased)
 ------------------

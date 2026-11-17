@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup, find_namespace_packages
 import os
 
 
@@ -18,6 +18,7 @@ setup(
     classifiers=[
         "Framework :: Plone",
         "Framework :: Plone :: 6.1",
+        "Framework :: Plone :: 6.2",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.10",
@@ -30,10 +31,10 @@ setup(
     author_email="jeanmichel.francois@makina-corpus.com",
     url="https://github.com/collective/collective.js.datatables",
     license="GPL",
-    packages=find_packages(exclude=["ez_setup"]),
-    namespace_packages=["collective", "collective.js"],
+    packages=find_namespace_packages(include=["collective.*"]),
     include_package_data=True,
     zip_safe=False,
+    python_requires=">=3.10",
     install_requires=[
         "setuptools",
         # -*- Extra requirements: -*-
